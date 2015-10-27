@@ -15,7 +15,6 @@ import oracle.jdbc.pool.OracleDataSource;
  * @author termine
  */
 public class DBDataSource {
-    //test by xouxou
 
     private static OracleDataSource ds = null;
 
@@ -29,7 +28,7 @@ public class DBDataSource {
                 ds.setDriverType("thin");
                 ds.setServerName("ne-ege-leto.ig.he-arc.ch");
                 ds.setPortNumber(1521);
-                ds.setDatabaseName("ens2"); // sid
+                ds.setDatabaseName("ens"); // sid
                 ds.setUser("sb_termine");
                 ds.setPassword("sb_termine");
             }
