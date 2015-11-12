@@ -6,21 +6,57 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+    "http://www.w3.org/TR/html4/loose.dtd">
 
-<html>
+<html lang="fr">
+
     <head>
-        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login page - gestion des personnes (CRUD) </title>
+
+        <meta charset="utf-8">
+        <title>Mon application</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Connexion à mon application">
+        <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+        <!-- ci-dessous notre fichier CSS -->
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/app.css" />
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:400,700,300" />
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <h1> Login page - gestion des personnes (CRUD)</h1>
-      <form method="POST" action="ServletLogin">
-         username : <input type="text" name="username"><br>
-         password : <input type="password" name="password"><br>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
 
-         <input type="submit" class="btn btn-info" value="Login">
-      </form>
+                    <div class="main">
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-1">
+
+                                <h1>Connexion</h1>
+                                <h2>Gest'People : Fast, Powerful and Simple</h2>
+
+                                <form action="/users/login" name="login" role="form" class="form-horizontal" method="post" accept-charset="utf-8">
+                                    <div class="form-group">
+                                        <div class="col-md-8"><input name="username" placeholder="Idenfiant" class="form-control" type="text" id="UserUsername"/></div>
+                                    </div> 
+
+                                    <div class="form-group">
+                                        <div class="col-md-8"><input name="password" placeholder="Mot de passe" class="form-control" type="password" id="UserPassword"/></div>
+                                    </div> 
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-0 col-md-8"><input  class="btn btn-success btn btn-success" type="submit" value="Connexion"/></div>
+                                    </div>
+
+                                </form>
+                                </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
