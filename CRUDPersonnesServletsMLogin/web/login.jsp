@@ -38,6 +38,15 @@
                                 <h2>Gest'People : Fast, Powerful and Simple</h2>
 
                                 <form action="ServletLogin" name="login" role="form" class="form-horizontal" method="post" accept-charset="utf-8">
+                                    <div class="form-group">
+                                        <div class="col-md-8"><input name="username" placeholder="Idenfiant" class="form-control" type="text" id="UserUsername"/></div>
+                                    </div> 
+
+                                    <div class="form-group">
+                                        <div class="col-md-8"><input name="password" placeholder="Mot de passe" class="form-control" type="password" id="UserPassword"/></div>
+                                    </div> 
+
+
                                     <%
                                         String loginError = (String) session.getAttribute("loginError");
                                         if (loginError != null) {
@@ -48,15 +57,6 @@
                                             session.setAttribute("loginError", null);
                                         }
                                     %>
-                                    <div class="form-group">
-                                        <div class="col-md-8"><input name="username" placeholder="Idenfiant" class="form-control" type="text" id="UserUsername"/></div>
-                                    </div> 
-
-                                    <div class="form-group">
-                                        <div class="col-md-8"><input name="password" placeholder="Mot de passe" class="form-control" type="password" id="UserPassword"/></div>
-                                    </div> 
-
-                                    
 
                                     <div class="form-group">
                                         <div class="col-md-offset-0 col-md-8"><input  class="btn btn-success btn btn-success" type="submit" value="Connexion"/></div>
