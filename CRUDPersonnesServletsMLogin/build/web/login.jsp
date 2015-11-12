@@ -37,7 +37,7 @@
                                 <h1>Connexion</h1>
                                 <h2>Gest'People : Fast, Powerful and Simple</h2>
 
-                                <form action="/users/login" name="login" role="form" class="form-horizontal" method="post" accept-charset="utf-8">
+                                <form action="ServletLogin" name="login" role="form" class="form-horizontal" method="post" accept-charset="utf-8">
                                     <div class="form-group">
                                         <div class="col-md-8"><input name="username" placeholder="Idenfiant" class="form-control" type="text" id="UserUsername"/></div>
                                     </div> 
