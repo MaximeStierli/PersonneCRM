@@ -10,6 +10,7 @@
 
 <html>
     <head>
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login page - gestion des personnes (CRUD) </title>
     </head>
@@ -19,7 +20,7 @@
          username : <input type="text" name="username"><br>
          password : <input type="password" name="password"><br>
 
-         <input type="submit" value="login">
+         <input type="submit" class="btn btn-info" value="Login">
       </form>
     </body>
 </html>
