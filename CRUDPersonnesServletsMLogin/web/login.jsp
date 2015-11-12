@@ -10,6 +10,12 @@
 
 <html lang="fr">
 
+    <style>
+        .label-fontcolor-red{
+            color:red;
+        }
+    </style>
+
     <head>
 
         <meta charset="utf-8">
