@@ -6,6 +6,11 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+<jsp:include page="bootstrap/template/navigationBar.jsp">
+    <jsp:param name="url" value="<%=request.getServletPath()%>" />
+</jsp:include>
+
 <html>
     <head>
         <meta charset="utf-8">
