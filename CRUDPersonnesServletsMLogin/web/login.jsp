@@ -9,7 +9,7 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 
 <html lang="fr">
-
+    <!-- ci-dessous notre fichier CSS -->
     <style>
         .label-fontcolor-red{
             color:red;
