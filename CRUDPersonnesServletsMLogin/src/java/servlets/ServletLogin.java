@@ -8,6 +8,8 @@ package servlets;
 import MemoryUser.Utilisateurs;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.jms.Session;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +34,7 @@ public class ServletLogin extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         String username = null, password = null;
+        HttpSession session = request.getSession();
         try {
 
             HtmlHttpUtils.doHeader("Login Page - Gestion de personnes (CRUD)", out);
@@ -53,10 +56,10 @@ public class ServletLogin extends HttpServlet {
               }else errorlogin=true;
             }else errorlogin=true;
             
-            if(errorlogin){
-                out.println("<p>Erreur d'authentification, veuillez préciser username , password");
-                out.println("<a href='login.jsp'>reessayer</a>");
-                out.println("</body></html>");
+           if(errorlogin){
+                session.setAttribute("loginError", "loginfailed");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+                dispatcher.forward(request, response);
             }
 
 
