@@ -112,10 +112,9 @@ public class CommentaireDAO {
         }
     }
 
-    public Long delete(Commentaire comm) {
+    public Long delete(Long id) {
 
        int executeUpdate=0;
-       if(comm.getId()!=null){//update via l'identifiant numero
 
         Connection conn = DBDataSource.getJDBCConnection();
         PreparedStatement pstmt = null;
@@ -127,7 +126,7 @@ public class CommentaireDAO {
 
             pstmt = conn.prepareStatement(q); //create a statement
                 //create a statement
-            pstmt.setLong(1,comm.getId());
+            pstmt.setLong(1,id);
             executeUpdate = pstmt.executeUpdate();
             conn.commit();
             System.out.println( executeUpdate + " Rows modified" ) ;
@@ -145,6 +144,5 @@ public class CommentaireDAO {
                 return new Long (executeUpdate);
             }
         }
-       }else return new Long (executeUpdate);
     }
 }

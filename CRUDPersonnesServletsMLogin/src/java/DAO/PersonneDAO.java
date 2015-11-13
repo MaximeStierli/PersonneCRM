@@ -21,10 +21,7 @@ import oracle.jdbc.OracleTypes;
  */
 public class PersonneDAO {
 
-    public PersonneDAO() {
-    }
-
-    ;
+    public PersonneDAO() {};
     
         public static ArrayList<Personne> findAll() {
 
