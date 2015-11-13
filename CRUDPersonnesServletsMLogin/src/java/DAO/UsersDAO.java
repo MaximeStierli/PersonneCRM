@@ -16,7 +16,7 @@ public class UsersDAO {
 
     public Users select(int id) {
         
-        return new Users();
+        return new Users(null, null);
     }
 
     public Long create(int id, String username, String pwd) {
