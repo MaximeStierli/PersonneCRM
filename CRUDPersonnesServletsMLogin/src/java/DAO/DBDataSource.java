@@ -18,7 +18,7 @@ public class DBDataSource {
 
     private static OracleDataSource ds = null;
 
-    public static Connection getJDBCConnection() throws SQLException {
+    public static Connection getJDBCConnection() {
 
         try {
             if (ds == null) {

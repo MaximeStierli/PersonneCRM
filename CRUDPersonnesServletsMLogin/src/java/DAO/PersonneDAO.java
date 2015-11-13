@@ -68,7 +68,7 @@ public class PersonneDAO {
         return tab_client;
     }
 
-    public Vector<Personne> research(Personne p) throws SQLException {
+    public Vector<Personne> research(Personne p) {
         Connection conn = DBDataSource.getJDBCConnection();
         Statement stmt = null;
         ResultSet rs = null;
@@ -167,7 +167,7 @@ public class PersonneDAO {
 
     }
 
-    public Long create(Personne p) throws SQLException {
+    public Long create(Personne p) {
 
         Connection conn = DBDataSource.getJDBCConnection();
         OraclePreparedStatement pstmt = null;
@@ -212,7 +212,7 @@ public class PersonneDAO {
         }
     }
 
-    public Long update(Personne p) throws SQLException {
+    public Long update(Personne p) {
         int executeUpdate = 0;
         if (p.getId() != null) {//update via l'identifiant numero
 
@@ -291,7 +291,7 @@ public class PersonneDAO {
         }
     }
 
-    public Long delete(Personne p) throws SQLException {
+    public Long delete(Personne p) {
 
         int executeUpdate = 0;
         if (p.getId() != null) {//update via l'identifiant numero
