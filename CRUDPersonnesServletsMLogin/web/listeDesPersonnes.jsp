@@ -22,18 +22,18 @@
     </head>
     <body style="background-color:white">
 
-        <h1>Hello World!</h1>
+       
         <div id="wrap">
             <div class="container">
                 <%
-                    /*
+                  /*  
                      if (request.getParameter("suppr") != null) {
                      out.println("<div class=\"alert alert-success\">Suppression de la personne : " + request.getParameter("p") + " " + request.getParameter("n") + " réussi</div>");
                      } else if (request.getParameter("mod") != null) {
                      out.println("<div class=\"alert alert-success\">Modification de la personne : " + request.getParameter("p") + " " + request.getParameter("n") + " réussi</div>");
                      }
                      if (request.getParameter("bon") != null) {
-                     */
+                  */   
                 %>
                 <table id="lstPersonnes" cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered">
                     <thead>
@@ -57,7 +57,9 @@
                                 out.println("<td>" + pers.getAdresse() + "</td>");
                                 out.println("<td>" + pers.getVille() + "</td>");
                                 out.println("<td><a class=\"btn btn-default btn-lg glyphicon glyphicon-edit\" title=\"Modifier\" href=\"index.jsp?mod=" + pers.getId() + "\"></a>");
-                                out.println("<a class=\"btn btn-default btn-lg glyphicon glyphicon-trash\" title=\"Supprimer\" href=\"index?suppr=" + pers.getId() + "&n=" + pers.getNom() + "&p=" + pers.getPrenom() + "\" onclick=\"return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));\"></a></td>");
+                                out.println("<a class=\"btn btn-default btn-lg glyphicon glyphicon-trash\" title=\"Supprimer\" href=\"index?suppr=" + pers.getId() + "&n=" 
+                                        + pers.getNom() + "&p=" 
+                                        + pers.getPrenom() + "\" onclick=\"return(confirm('Etes-vous sûr de vouloir supprimer cette personne ?'));\"></a></td>");
                                 out.println("</tr>");
                             }
 
