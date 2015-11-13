@@ -22,7 +22,7 @@ import oracle.jdbc.OracleTypes;
 public class CommentaireDAO {
     public CommentaireDAO(){};
 
-    public Vector<Commentaire>  select(Commentaire comm) {
+    public Vector<Commentaire>  selectAll() {
         Connection conn = DBDataSource.getJDBCConnection();
         Statement stmt = null;
         ResultSet rs = null;
@@ -31,17 +31,6 @@ public class CommentaireDAO {
             String query=null,sn=null,scomm=null,susers=null;
             boolean onedone=false;
             query= "select * from Commentaire";
-       
-          //tester si on a des critères
-           if(comm.getId()!=null)sn=" numero="+comm.getId();
-           if(comm.getCommentaire()!=null) scomm=" COMMENTAIRE like '%" +comm.getCommentaire()+"%' ";
-           if(comm.getComm_users()!=null) susers=" PRENOM like '%" +comm.getComm_users()+"%' ";
-           //si critères, contruire la clause where
-           if (sn!=null || scomm!=null || susers!=null) query=query.concat(" WHERE ");
-           //construction de la clause where
-           if(sn!=null){query=query.concat(sn);onedone=true;}
-           if(scomm!=null){if (onedone)query=query.concat(" AND "); query=query.concat(scomm); onedone=true;}
-           if(susers!=null){if (onedone)query=query.concat(" AND "); query=query.concat(susers); onedone=true;}
 
            System.out.println(query);
            stmt = conn.createStatement(); //create a statement
@@ -69,6 +58,39 @@ public class CommentaireDAO {
             }
         } 
     }
+    
+    public Commentaire select(Long id) {
+        Connection conn = DBDataSource.getJDBCConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Commentaire c = new Commentaire();
+        try {
+            String query = "SELECT * FROM Commentaire WHERE numero = ?";
+            
+            stmt = conn.prepareStatement(query);        
+            stmt.setLong(1, id);
+            rs = stmt.executeQuery();
+           
+            // On ajoute les restaurants à la liste
+            while(rs.next()){
+                c.setId(rs.getLong("Numero"));
+                c.setCommentaire(rs.getString("Commentaire"));
+                c.setComm_user(rs.getLong("commentaire_users"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                stmt.close();
+                conn.close();
+                 return c;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return null;
+            }
+        } 
+    }
 
     public Long create(Long id, String commentaire) {
 
@@ -84,7 +106,7 @@ public class CommentaireDAO {
             pstmt = (OraclePreparedStatement) conn.prepareStatement(query); //create a statement
             pstmt.setLong(1, id);
             pstmt.setString(2,commentaire);
-            pstmt.registerReturnParameter(5, OracleTypes.NUMBER);
+            pstmt.registerReturnParameter(3, OracleTypes.NUMBER);
 
             int count = pstmt.executeUpdate();
             conn.commit();
