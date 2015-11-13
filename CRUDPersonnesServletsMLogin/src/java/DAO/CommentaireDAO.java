@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Date;
 import java.util.Vector;
 import oracle.jdbc.OraclePreparedStatement;
 import oracle.jdbc.OracleTypes;
@@ -40,9 +41,14 @@ public class CommentaireDAO {
                 Long n = rs.getLong("NUMERO");
                 String commentaire = rs.getString("COMMENTAIRE_USERS");
                 Long users_id = rs.getLong("COMMENTAIRE");
-                Commentaire c = new Commentaire(commentaire,users_id);
+                Date dateAjout = rs.getDate("DateAjout");
+                Commentaire c = new Commentaire();
+                c.setId(n);
+                c.setCommentaire(commentaire);
+                c.setComm_user(users_id);
+                c.setDateAjout(dateAjout);
                 resultList.add(c);
-                System.out.println(n + "\t" + commentaire + "\t" + users_id);
+                System.out.println(n + "\t" + commentaire + "\t" + users_id + "\t" + dateAjout);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -76,6 +82,7 @@ public class CommentaireDAO {
                 c.setId(rs.getLong("Numero"));
                 c.setCommentaire(rs.getString("Commentaire"));
                 c.setComm_user(rs.getLong("commentaire_users"));
+                c.setDateAjout(rs.getDate("DateAjout"));
             }
         } catch (Exception e) {
             e.printStackTrace();

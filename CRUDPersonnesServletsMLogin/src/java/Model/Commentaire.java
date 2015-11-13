@@ -48,4 +48,12 @@ public class Commentaire {
     public void setId(Long id){
         this.id = id;
     }
+
+    public Date getDateAjout() {
+        return dateAjout;
+    }
+
+    public void setDateAjout(Date dateAjout) {
+        this.dateAjout = dateAjout;
+    }
 }
