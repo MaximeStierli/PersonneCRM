@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import oracle.jdbc.OraclePreparedStatement;
 import oracle.jdbc.OracleTypes;
 
@@ -97,8 +98,49 @@ public class UsersDAO {
         }
     }
     
-    public Long update(int id, String username, String pwd){
-        return new Long(0);
+    public Long updatePWD(int id,String username,String pwd, Blob photo){
+        int executeUpdate = 0;
+            String query = null, endquery = null,susername = null, spwd = null, sphoto = null;
+            Connection conn = DBDataSource.getJDBCConnection();
+            Statement stmt = null;
+            try {
+                               
+                boolean onedone = false;
+                query = "update USERS SET";
+                endquery = " WHERE numero=" + id;
+
+                if (username != null) {
+                    susername = " USERNAME='" + username + "'";
+                }
+                if (pwd != null) {
+                    spwd = " PWD='" + pwd + "'";
+                }
+                if (photo != null) {
+                    sphoto = " PHOTO='" + photo + "'";
+                }
+
+                query = query.concat(endquery);
+
+                System.out.println("updatequery ->" + query);
+
+                //create a statement
+                stmt = conn.createStatement();
+                executeUpdate = stmt.executeUpdate(query);
+                conn.commit();
+                System.out.println(executeUpdate + " Rows modified");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    stmt.close();
+                    conn.close();
+                    return new Long(executeUpdate);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    return new Long(executeUpdate);
+                }
+            }
     }
 
     public Long delete(int id) {
