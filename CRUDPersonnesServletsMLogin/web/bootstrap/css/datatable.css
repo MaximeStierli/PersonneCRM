@@ -8,7 +8,7 @@
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	width: 250px;
+	width: 50px;
 	height: 30px;
 	margin-left: -125px;
 	margin-top: -15px;
@@ -101,7 +101,7 @@
 table.display {
 	margin: 0 auto;
 	clear: both;
-	width: 100%;
+	width: 700px;
 	
 	/* Note Firefox 3.5 and before have a bug with border-collapse
 	 * ( https://bugzilla.mozilla.org/show%5Fbug.cgi?id=155955 ) 
@@ -257,7 +257,7 @@ tr.even {
 
 tfoot input {
 	margin: 0.5em 0;
-	width: 100%;
+	width: 750px;
 	color: #444;
 }
 
@@ -282,7 +282,7 @@ td.details {
 }
 
 .paging_full_numbers {
-	width: 400px;
+	width: 100px;
 	height: 22px;
 	line-height: 22px;
 }
