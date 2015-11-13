@@ -57,7 +57,7 @@
                                         String loginError = (String) session.getAttribute("loginError");
                                         if (loginError != null) {
                                     %>
-                                    <label class="label-fontcolor-red">Nom du utilisateur ou mot de passe incorrect !</label>
+                                    <label class="label-fontcolor-red">Nom d'utilisateur ou mot de passe incorrect !</label>
                                     <%
                                             //effacer le message de session
                                             session.setAttribute("loginError", null);
