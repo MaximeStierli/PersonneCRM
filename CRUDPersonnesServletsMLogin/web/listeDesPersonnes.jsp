@@ -26,14 +26,14 @@
         <div id="wrap">
             <div class="container">
                 <%
-                /*
-                    if (request.getParameter("suppr") != null) {
-                        out.println("<div class=\"alert alert-success\">Suppression de la personne : " + request.getParameter("p") + " " + request.getParameter("n") + " réussi</div>");
-                    } else if (request.getParameter("mod") != null) {
-                        out.println("<div class=\"alert alert-success\">Modification de la personne : " + request.getParameter("p") + " " + request.getParameter("n") + " réussi</div>");
-                    }
-                    if (request.getParameter("bon") != null) {
-               */
+                    /*
+                     if (request.getParameter("suppr") != null) {
+                     out.println("<div class=\"alert alert-success\">Suppression de la personne : " + request.getParameter("p") + " " + request.getParameter("n") + " réussi</div>");
+                     } else if (request.getParameter("mod") != null) {
+                     out.println("<div class=\"alert alert-success\">Modification de la personne : " + request.getParameter("p") + " " + request.getParameter("n") + " réussi</div>");
+                     }
+                     if (request.getParameter("bon") != null) {
+                     */
                 %>
                 <table id="lstPersonnes" cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered">
                     <thead>
@@ -46,38 +46,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% 
+                        <%
                             PersonneDAO pdao = new PersonneDAO();
                             ArrayList<Personne> listePersonne = new ArrayList();
                             listePersonne = pdao.findAll();
-                            for (Personne pers : listePersonne ) {
-                               out.println("<tr>");
-                               out.println("<td>" + pers.getNom() + "</td>");
-                               out.println("<td>" + pers.getPrenom() + "</td>");
-                               out.println("<td>" + pers.getAdresse() + "</td>");
-                               out.println("<td>" + pers.getVille() + "</td>");
-                               out.println("<td> prout </td>");
-                               out.println("</tr>");
-                            }
-                            /*String nom = request.getParameter("nom");
-                            String prenom = request.getParameter("prenom");
-                            String adresse = request.getParameter("adresse");
-                            String ville = request.getParameter("ville");
-                            PersonneDAO pdao = new PersonneDAO();
-                            Vector<Personne> v = pdao.research(new Personne(nom, prenom, adresse, ville));
-                            for (int i = 0; i < v.size(); i++) {
-                                Personne p = v.elementAt(i);
+                            for (Personne pers : listePersonne) {
                                 out.println("<tr>");
-                                out.println("<td>" + p.getNom() + "</td>");
-                                out.println("<td>" + p.getPrenom() + "</td>");
-                                out.println("<td>" + p.getAdresse() + "</td>");
-                                out.println("<td>" + p.getVille() + "</td>");
-                                out.println("<td>");
-                                /*out.println("<a class=\"btn btn-default btn-lg glyphicon glyphicon-edit\" title=\"Modifier\" href=\"index.jsp?mod=" + p.getId() + "\"></a>");
-                                 out.println("<a class=\"btn btn-default btn-lg glyphicon glyphicon-trash\" title=\"Supprimer\" href=\"index?suppr=" + p.getId() + "&n=" + p.getNom() + "&p=" + p.getPrenom() + "\" onclick=\"return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));\"></a>");
-                                 
-                                out.println("</td>");
-                                out.println("</tr>");*/
+                                out.println("<td>" + pers.getNom() + "</td>");
+                                out.println("<td>" + pers.getPrenom() + "</td>");
+                                out.println("<td>" + pers.getAdresse() + "</td>");
+                                out.println("<td>" + pers.getVille() + "</td>");
+                                out.println("<td><a class=\"btn btn-default btn-lg glyphicon glyphicon-edit\" title=\"Modifier\" href=\"index.jsp?mod=" + pers.getId() + "\"></a>");
+                                out.println("<a class=\"btn btn-default btn-lg glyphicon glyphicon-trash\" title=\"Supprimer\" href=\"index?suppr=" + pers.getId() + "&n=" + pers.getNom() + "&p=" + pers.getPrenom() + "\" onclick=\"return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));\"></a></td>");
+                                out.println("</tr>");
+                            }
 
                         %>
                     </tbody>

@@ -41,9 +41,9 @@ public class PersonneDAO {
             while (rs.next()) {
                 Personne pers = new Personne();
                 pers.setNom(rs.getString("NOM"));
-                pers.setNom(rs.getString("PRENOM"));
-                pers.setNom(rs.getString("ADRESSE"));
-                pers.setNom(rs.getString("VILLE"));
+                pers.setPrenom(rs.getString("PRENOM"));
+                pers.setAdresse(rs.getString("ADRESSE"));
+                pers.setVille(rs.getString("VILLE"));
                 tab_client.add(pers);
 
             }
