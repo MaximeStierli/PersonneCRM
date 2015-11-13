@@ -26,7 +26,6 @@ public class DBDataSource {
                 ds = new OracleDataSource();
 
                 ds.setDriverType("thin");
-                
                 ds.setServerName("db.ig.he-arc.ch");
                 ds.setPortNumber(1521);
                 ds.setDatabaseName("ens2"); // sid
@@ -40,7 +39,5 @@ public class DBDataSource {
             Logger.getLogger(DBDataSource.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
-        
-
     }
 }
