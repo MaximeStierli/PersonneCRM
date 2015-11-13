@@ -11,7 +11,7 @@
 <%@page import="servlets.HtmlHttpUtils"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<jsp:include page="bootstrap/template/navigationBar.jsp">
+<jsp:include page="bootstrap/template/Menu.jsp">
     <jsp:param name="url" value="<%=request.getServletPath()%>" />
 </jsp:include>
 
@@ -48,13 +48,9 @@
                     <tbody>
                         <% 
                             PersonneDAO pdao = new PersonneDAO();
-                            out.println("caca1");
                             ArrayList<Personne> listePersonne = new ArrayList();
-                            out.println("caca2");
                             listePersonne = pdao.findAll();
-                            out.println("caca3");
                             for (Personne pers : listePersonne ) {
-                                out.println("caca4");
                                out.println("<tr>");
                                out.println("<td>" + pers.getNom() + "</td>");
                                out.println("<td>" + pers.getPrenom() + "</td>");
