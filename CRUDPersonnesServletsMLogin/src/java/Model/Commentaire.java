@@ -20,6 +20,10 @@ public class Commentaire {
     public Commentaire(String commentaire,Long comm_users) {
         this.commentaire = commentaire;
     }
+    
+    public Commentaire(){
+        
+    }
 
     public Long getComm_users() {
         return comm_users;
@@ -39,5 +43,17 @@ public class Commentaire {
 
     public Long getId() {
         return id;
+    }
+   
+    public void setId(Long id){
+        this.id = id;
+    }
+
+    public Date getDateAjout() {
+        return dateAjout;
+    }
+
+    public void setDateAjout(Date dateAjout) {
+        this.dateAjout = dateAjout;
     }
 }
