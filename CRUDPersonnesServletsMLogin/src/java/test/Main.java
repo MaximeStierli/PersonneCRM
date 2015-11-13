@@ -19,13 +19,14 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        PersonneDAO pdao = new PersonneDAO();
-        ArrayList<Personne> listePersonne;
-        listePersonne = pdao.findAll();
-        for (Personne pers : listePersonne ) {
-            
-            System.out.println("salut");
-        }
+//        PersonneDAO pdao = new PersonneDAO();
+//        ArrayList<Personne> listePersonne;
+//        listePersonne = pdao.findAll();
+//        for (Personne pers : listePersonne ) {
+//            
+//            System.out.println("salut");
+//        }
+        
     }
 
 }

@@ -80,6 +80,10 @@
         <servlet-name>ServletSuppCommentaire</servlet-name>
         <url-pattern>/ServletSuppCommentaire</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletAfficheCommentaires</servlet-name>
+        <url-pattern>/ServletAfficheCommentaires</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
