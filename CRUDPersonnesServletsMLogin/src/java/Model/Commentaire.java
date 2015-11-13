@@ -13,20 +13,20 @@ import java.sql.Date;
  */
 public class Commentaire {
     private Long id=null;
-    private Long comm_user=null;
+    private Long comm_users=null;
     private String commentaire;
     private Date dateAjout=null;
     
-    public Commentaire(String commentaire) {
+    public Commentaire(String commentaire,Long comm_users) {
         this.commentaire = commentaire;
     }
 
-    public Long getComm_user() {
-        return comm_user;
+    public Long getComm_users() {
+        return comm_users;
     }
 
-    public void setComm_user(Long comm_user) {
-        this.comm_user = comm_user;
+    public void setComm_user(Long comm_users) {
+        this.comm_users = comm_users;
     }
 
     public String getCommentaire() {
