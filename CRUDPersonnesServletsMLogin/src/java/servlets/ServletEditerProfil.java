@@ -5,12 +5,11 @@
  */
 package servlets;
 
-import DAO.CommentaireDAO;
 import DAO.UsersDAO;
-import Model.Commentaire;
 import Model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Blob;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author yasmine.mabrouk
  */
-public class ServletSuppCommentaire extends HttpServlet {
+public class ServletEditerProfil extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,20 +36,30 @@ public class ServletSuppCommentaire extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-             HttpSession s = request.getSession(true);
+            request.setAttribute("EditUserError" , null);
+            
+            //recupere l'attribut username de la session
+            HttpSession s = request.getSession(true);
             String username = (String)s.getAttribute("username");
             
+            //recupere le user de la session
             UsersDAO usersDAO = new UsersDAO();
             Users userEnCour = usersDAO.select(username);
             
-            CommentaireDAO commentaireDAO = new CommentaireDAO();
-            Long ID = Long.getLong(request.getParameter("ID"));
-            Commentaire cmnt = commentaireDAO.select(ID);
+            //recupérer user propriétaire de profil 
+            Users userProfil = usersDAO.select(request.getParameter("usermane"));
             
-           if(userEnCour.getId().equals (cmnt.getComm_users())){ 
-            commentaireDAO.delete(ID);
+            
+           if(userEnCour.getId().equals(userProfil.getId()) ){ 
+            Long error = usersDAO.updateProfil(userProfil.getId(),
+                                                request.getParameter("usermane"),
+                                                request.getParameter("pwd"),
+                                                null);
+            // reste photo a traiter après resquest.getAttribut(""); si possible d'ajouter un attribut a une servlet de puis jsp
            }else{
-               request.setAttribute("SuppCmntError" , "error droit");
+               
+           request.setAttribute("EditUserError" , "error droit");
+           
            }    
         } finally {
             out.close();

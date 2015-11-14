@@ -56,7 +56,7 @@ public class UsersDAO {
         } 
     }
 
-    public Long create(int id, String username, String pwd, Blob photo) {
+    public Long create(Long id, String username, String pwd, Blob photo) {
         Connection conn = DBDataSource.getJDBCConnection();
         OraclePreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -98,7 +98,7 @@ public class UsersDAO {
         }
     }
     
-    public Long updatePWD(int id,String username,String pwd, Blob photo){
+    public Long updateProfil(Long id,String username,String pwd, Blob photo){
         int executeUpdate = 0;
             String query = null, endquery = null,susername = null, spwd = null, sphoto = null;
             Connection conn = DBDataSource.getJDBCConnection();
@@ -143,7 +143,7 @@ public class UsersDAO {
             }
     }
 
-    public Long delete(int id) {
+    public Long delete(Long id) {
         int executeUpdate=0;
 
         Connection conn = DBDataSource.getJDBCConnection();
