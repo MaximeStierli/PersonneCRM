@@ -49,8 +49,9 @@ public class ServletSuppCommentaire extends HttpServlet {
             
            if(userEnCour.getId().equals (cmnt.getComm_users())){ 
             commentaireDAO.delete(ID);
-           }else
-           {}    
+           }else{
+               request.setAttribute("SuppCmntError" , "error droit");
+           }    
         } finally {
             out.close();
         }

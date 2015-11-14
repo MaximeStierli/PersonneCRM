@@ -40,6 +40,10 @@
         <servlet-name>ServletSuppCommentaire</servlet-name>
         <servlet-class>servlets.ServletSuppCommentaire</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletEditerProfil</servlet-name>
+        <servlet-class>servlets.ServletEditerProfil</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletCreationPersonne</servlet-name>
         <url-pattern>/ServletCreationPersonne</url-pattern>
@@ -81,8 +85,8 @@
         <url-pattern>/ServletSuppCommentaire</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ServletAfficheCommentaires</servlet-name>
-        <url-pattern>/ServletAfficheCommentaires</url-pattern>
+        <servlet-name>ServletEditerProfil</servlet-name>
+        <url-pattern>/ServletEditerProfil</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
