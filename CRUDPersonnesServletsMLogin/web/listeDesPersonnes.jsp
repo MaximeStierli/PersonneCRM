@@ -119,10 +119,15 @@
                                 <a class="btn btn-default btn-lg glyphicon glyphicon-trash" title="Supprimer" href="ServletEffacerPersonne" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette personne ?'))"></a>
 
                             </td>
+
                         </tr>
                         <% }%>
                     </tbody>
                 </table>
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Warning!</strong> Better check yourself, you're not looking too good.
+                </div>
             </div>
         </div>
     </body>
