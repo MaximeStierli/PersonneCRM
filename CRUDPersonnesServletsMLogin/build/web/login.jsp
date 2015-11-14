@@ -9,17 +9,10 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 
 <html lang="fr">
-    <!-- ci-dessous notre fichier CSS -->
-    <style>
-        .label-fontcolor-red{
-            color:red;
-        }
-    </style>
-
     <head>
 
         <meta charset="utf-8">
-        <title>Mon application</title>
+        <title>Arc'People - Connexion</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Connexion à mon application">
         <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
@@ -35,21 +28,21 @@
             <div class="row">
                 <div class="col-xs-12">
 
-                    <div class="main">
+                    <div class="main" >
 
                         <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-sm-offset-1">
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-1" >
 
                                 <h1>Connexion</h1>
                                 <h2>Gest'People : Fast, Powerful and Simple</h2>
 
                                 <form action="ServletLogin" name="login" role="form" class="form-horizontal" method="post" accept-charset="utf-8">
                                     <div class="form-group">
-                                        <div class="col-md-8"><input name="username" placeholder="Idenfiant" class="form-control" type="text" id="UserUsername"/></div>
+                                        <div class="col-md-12"><input name="username" placeholder="Idenfiant" class="form-control" type="text" id="UserUsername"/></div>
                                     </div> 
 
                                     <div class="form-group">
-                                        <div class="col-md-8"><input name="password" placeholder="Mot de passe" class="form-control" type="password" id="UserPassword"/></div>
+                                        <div class="col-md-12"><input name="password" placeholder="Mot de passe" class="form-control" type="password" id="UserPassword"/></div>
                                     </div> 
 
 
@@ -65,7 +58,7 @@
                                     %>
 
                                     <div class="form-group">
-                                        <div class="col-md-offset-0 col-md-8"><input  class="btn btn-success btn btn-success" type="submit" value="Connexion"/></div>
+                                        <div class="col-md-offset-0 col-md-12"><input  class="btn btn-success btn btn-success" type="submit" value="Connexion"/></div>
                                     </div>
 
                                 </form>
