@@ -28,6 +28,7 @@
                             </a>
                         </div>
                     </div>
+                    <p>Bonjour</p>
                     
                         <div class="panel-body">
                             <ul class="chat">
