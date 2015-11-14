@@ -4,16 +4,25 @@ body {
     font-weight: 300;
 }
 .main {
-    width:500px;
-    height:500px;
-    border-radius:300px;
-    background: white url(caillou.png) right top no-repeat;
-    background-size: contain;
-    padding: 80px 20px 20px;
-    margin-top: 120px;
+    position:fixed;
     vertical-align: middle;
-
+    left: 50%;
+    bottom:30%;
+    width: 600px;
+    height:500px;
+    margin-left: -300px;
+    margin-bottom: -125px;
+    margin-top: -125px;
+    background-color: white;
+    border-radius: 50%;
 }
+
+.form-form {
+    
+    background-color: yellow;
+    border-radius: 50%;
+}
+
 @media only screen and (max-width : 500px) {
     .main {
         background: white;
@@ -43,6 +52,8 @@ h2 {
 form {
     margin-top: 60px;
     vertical-align: middle;
+    margin-left: 30%;
+    margin-right: 30%;
 }
 input.form-control , input[type="submit"] , .btn {
     border-radius: 0px;
@@ -62,5 +73,5 @@ input.form-control , input[type="submit"] , .btn {
 }
 
 .label-fontcolor-red{
-            color:red;
-        }
+    color:red;
+}

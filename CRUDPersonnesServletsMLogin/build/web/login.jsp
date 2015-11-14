@@ -24,50 +24,57 @@
         <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12">
+        <table id="page-table"><tr><td id="page-td">
+                    <div id="global">
 
-                    <div class="main" >
+                        <div class="container" >
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-form">
 
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-sm-offset-1" >
-
-                                <h1>Connexion</h1>
-                                <h2>Gest'People : Fast, Powerful and Simple</h2>
-
-                                <form action="ServletLogin" name="login" role="form" class="form-horizontal" method="post" accept-charset="utf-8">
-                                    <div class="form-group">
-                                        <div class="col-md-12"><input name="username" placeholder="Idenfiant" class="form-control" type="text" id="UserUsername"/></div>
-                                    </div> 
-
-                                    <div class="form-group">
-                                        <div class="col-md-12"><input name="password" placeholder="Mot de passe" class="form-control" type="password" id="UserPassword"/></div>
-                                    </div> 
+                                        <div class="main">
 
 
-                                    <%
-                                        String loginError = (String) session.getAttribute("loginError");
-                                        if (loginError != null) {
-                                    %>
-                                    <label class="label-fontcolor-red">Nom d'utilisateur ou mot de passe incorrect !</label>
-                                    <%
-                                            //effacer le message de session
-                                            session.setAttribute("loginError", null);
-                                        }
-                                    %>
+                                            <h1></h1><br /><br /><br />
+                                            <h1>Connexion</h1>
+                                            <h2>Gest'People : Fast, Powerful and Simple</h2>
 
-                                    <div class="form-group">
-                                        <div class="col-md-offset-0 col-md-12"><input  class="btn btn-success btn btn-success" type="submit" value="Connexion"/></div>
+                                            <form action="ServletLogin" name="login" role="form" class="form-horizontal" method="post" accept-charset="utf-8">
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
+                                                        <input name="username" placeholder="Idenfiant" class="form-control" type="text" id="UserUsername"/></div>
+                                                </div> 
+
+                                                <div class="form-group">
+                                                    <div class="col-md-12"><input name="password" placeholder="Mot de passe" class="form-control" type="password" id="UserPassword"/></div>
+                                                </div> 
+
+
+                                                <%
+                                                    String loginError = (String) session.getAttribute("loginError");
+                                                    if (loginError != null) {
+                                                %>
+                                                <label class="label-fontcolor-red">Nom d'utilisateur ou mot de passe incorrect !</label>
+                                                <%
+                                                        //effacer le message de session
+                                                        session.setAttribute("loginError", null);
+                                                    }
+                                                %>
+
+                                                <div class="form-group">
+                                                    <div class="col-md-offset-0 col-md-12"><input  class="btn btn-success btn btn-success" type="submit" value="Connexion"/></div>
+                                                </div>
+
+                                            </form>
+                                        </div>
                                     </div>
+                                </div>
 
-                                </form>
                             </div>
                         </div>
-
                     </div>
-                </div>
-            </div>
-        </div>
+                    </div>
+                    </div>
+                </td></tr></table>
     </body>
 </html>
