@@ -4,14 +4,18 @@ package servlets;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+import DAO.AjoutDAO;
 import DAO.PersonneDAO;
+import DAO.UsersDAO;
 import Model.Personne;
+import Model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -19,8 +23,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ServletCreationPersonne extends HttpServlet {
 
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -48,9 +54,15 @@ public class ServletCreationPersonne extends HttpServlet {
                         out.println("<p>nom et prenom ne doivent pas etre null !!</p>");
                     }
                 }
-                /* TODO output your page here
-                out.println("<h1>Servlet ServletCreationPersonne at " + request.getContextPath () + "</h1>");
-                 */
+                /* syteme des points */
+                HttpSession s = request.getSession(true);
+                String username = (String) s.getAttribute("username");
+
+                UsersDAO usersDAO = new UsersDAO();
+                Users userEnCour = usersDAO.select(username);
+                
+                AjoutDAO ajoutDAO = new AjoutDAO();
+                ajoutDAO.create(userEnCour.getId());
             }
             HtmlHttpUtils.doFooter(out);
         } finally {
@@ -59,8 +71,9 @@ public class ServletCreationPersonne extends HttpServlet {
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
+    /**
      * Handles the HTTP <code>GET</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -72,8 +85,9 @@ public class ServletCreationPersonne extends HttpServlet {
         processRequest(request, response);
     }
 
-    /** 
+    /**
      * Handles the HTTP <code>POST</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -85,8 +99,9 @@ public class ServletCreationPersonne extends HttpServlet {
         processRequest(request, response);
     }
 
-    /** 
+    /**
      * Returns a short description of the servlet.
+     *
      * @return a String containing servlet description
      */
     @Override

@@ -119,6 +119,7 @@
                                 <a class="btn btn-default btn-lg glyphicon glyphicon-trash" title="Supprimer" href="ServletEffacerPersonne" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette personne ?'))"></a>
 
                             </td>
+
                         </tr>
                         <% }%>
                     </tbody>
