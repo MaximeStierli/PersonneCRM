@@ -41,7 +41,7 @@ public class CommentaireDAO {
 
             while (rs.next()) {
                 Long n = rs.getLong("NUMERO");
-                String commentaire = rs.getString("COMMENTAIRE_USERS");
+                String commentaire = rs.getString("USERS_NUMERO");
                 Long users_id = rs.getLong("COMMENTAIRE");
                 Date dateAjout = rs.getDate("DateAjout");
                 Commentaire c = new Commentaire();
@@ -83,7 +83,7 @@ public class CommentaireDAO {
             while(rs.next()){
                 c.setId(rs.getLong("Numero"));
                 c.setCommentaire(rs.getString("Commentaire"));
-                c.setComm_user(rs.getLong("commentaire_users"));
+                c.setComm_user(rs.getLong("users_numero"));
                 c.setDateAjout(rs.getDate("DateAjout"));
             }
         } catch (Exception e) {
@@ -109,7 +109,7 @@ public class CommentaireDAO {
         Long returnNumero = null;
         try {
 
-            String query = "insert into Commentaire(USER_NUMERO,commentaire) values (?,?) returning numero into ?";
+            String query = "insert into Commentaire(users_numero,commentaire) values (?,?) returning numero into ?";
             System.out.println("insertquery ->" + query);
 
             pstmt = (OraclePreparedStatement) conn.prepareStatement(query); //create a statement
