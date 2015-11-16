@@ -1,7 +1,9 @@
 body {
-    background: #252525;
+    background-image: url("../img/background.png");
+    background-color: black;
     font-family: 'Open Sans';
     font-weight: 300;
+    color:white;
 }
 .main {
     position:fixed;
@@ -13,7 +15,7 @@ body {
     margin-left: -300px;
     margin-bottom: -125px;
     margin-top: -125px;
-    background-color: white;
+    background-color: #74AFAD;
     border-radius: 50%;
 }
 
@@ -36,15 +38,15 @@ body {
 }
 h1 {
     font-family: 'Lato', sans-serif;
-    font-weight: 300;
-    color: #555;
+    font-weight: bold;
+    color: white;
     margin-bottom: 0;
     text-align: center;
 }
 h2 {
     font-family: 'Lato', sans-serif;
     font-weight: 300;
-    color: #999;
+    color: white;
     font-size: 18px;
     margin-top: 5px;
     text-align: center;
@@ -75,3 +77,15 @@ input.form-control , input[type="submit"] , .btn {
 .label-fontcolor-red{
     color:red;
 }
+.input-group-addon {
+    display: inline;
+}
+
+
+
+
+
+
+
+
+

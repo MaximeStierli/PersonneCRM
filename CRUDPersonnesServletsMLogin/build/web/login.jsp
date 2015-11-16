@@ -42,11 +42,24 @@
                                             <form action="ServletLogin" name="login" role="form" class="form-horizontal" method="post" accept-charset="utf-8">
                                                 <div class="form-group">
                                                     <div class="col-md-12">
-                                                        <input name="username" placeholder="Idenfiant" class="form-control" type="text" id="UserUsername"/></div>
+                                                         <%--
+                                                        <span class="input-group-addon">
+                                                            <img src="bootstrap/img/iconPassword.png" width="30px">
+                                                        </span>
+                                                        --%>
+                                                        <input name="username" placeholder="Idenfiant" class="form-control" type="text" id="UserUsername"/>
+                                                    </div>
                                                 </div> 
 
                                                 <div class="form-group">
-                                                    <div class="col-md-12"><input name="password" placeholder="Mot de passe" class="form-control" type="password" id="UserPassword"/></div>
+                                                    <div class="col-md-12">
+                                                        <%--
+                                                        <span class="input-group-addon">
+                                                            <img src="bootstrap/img/iconPassword.png" width="30px">
+                                                        </span>
+                                                        --%>
+                                                        <input name="password" placeholder="Mot de passe" class="form-control" type="password" id="UserPassword"/>
+                                                    </div>
                                                 </div> 
 
 
@@ -72,8 +85,6 @@
 
                             </div>
                         </div>
-                    </div>
-                    </div>
                     </div>
                 </td></tr></table>
     </body>

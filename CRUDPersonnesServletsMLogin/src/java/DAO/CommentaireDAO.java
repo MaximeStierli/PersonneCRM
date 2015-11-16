@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Date;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import oracle.jdbc.OraclePreparedStatement;
 import oracle.jdbc.OracleTypes;
 
@@ -107,7 +109,7 @@ public class CommentaireDAO {
         Long returnNumero = null;
         try {
 
-            String query = "insert into Commentaire(Commentaire_users,commentaire) values (?,?) returning numero into ?";
+            String query = "insert into Commentaire(USER_NUMERO,commentaire) values (?,?) returning numero into ?";
             System.out.println("insertquery ->" + query);
 
             pstmt = (OraclePreparedStatement) conn.prepareStatement(query); //create a statement
