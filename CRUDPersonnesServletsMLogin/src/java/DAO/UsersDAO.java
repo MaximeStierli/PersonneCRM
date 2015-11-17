@@ -34,7 +34,6 @@ public class UsersDAO {
             stmt.setString(1, username);
             rs = stmt.executeQuery();
            
-            // On ajoute les restaurants à la liste
             while(rs.next()){
                 u.setId(rs.getLong("Numero"));
                 u.setUsername(rs.getString("Username"));
