@@ -15,6 +15,7 @@ public class Users {
     private Long id=null;
     private String username;
     private String pwd;
+    private String email;
     private Blob photo = null;
 
     public Users() {
@@ -54,6 +55,14 @@ public class Users {
 
     public void setPhoto(Blob photo) {
         this.photo = photo;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
     
     

@@ -5,22 +5,18 @@
  */
 package servlets;
 
-import DAO.UsersDAO;
-import Model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Blob;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author yasmine.mabrouk
+ * @author Maxime Stierli <maxime.stierli@he-arc.ch>
  */
-public class ServletEditerProfil extends HttpServlet {
+public class ServletEnvoiBon extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,32 +32,16 @@ public class ServletEditerProfil extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            request.setAttribute("EditUserError" , null);
-            
-            //recupere l'attribut username de la session
-            HttpSession s = request.getSession(true);
-            String username = (String)s.getAttribute("username");
-            
-            //recupere le user de la session
-            UsersDAO usersDAO = new UsersDAO();
-            Users userEnCour = usersDAO.select(username);
-            
-            //recupérer user propriétaire de profil 
-            Users userProfil = usersDAO.select(request.getParameter("usermane"));
-            
-            
-           if(userEnCour.getId().equals(userProfil.getId()) ){ 
-            Long error = usersDAO.updateProfil(userProfil.getId(),
-                                                null,
-                                                request.getParameter("pwd"),
-                                                null,
-                                                null);
-            // reste photo a traiter après resquest.getAttribut(""); si possible d'ajouter un attribut a une servlet de puis jsp
-           }else{
-               
-           request.setAttribute("EditUserError" , "error droit");
-           
-           }    
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ServletEnvoiBon</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ServletEnvoiBon at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         } finally {
             out.close();
         }

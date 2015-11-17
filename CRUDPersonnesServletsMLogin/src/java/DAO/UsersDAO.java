@@ -37,6 +37,7 @@ public class UsersDAO {
             while(rs.next()){
                 u.setId(rs.getLong("Numero"));
                 u.setUsername(rs.getString("Username"));
+                u.setEmail(rs.getString("email"));
                 u.setPwd(rs.getString("pwd"));
                 u.setPhoto(rs.getBlob("Photo"));
             }
@@ -55,21 +56,22 @@ public class UsersDAO {
         } 
     }
 
-    public Long create(Long id, String username, String pwd, Blob photo) {
+    public Long create(Long id, String username, String pwd, String email,Blob photo) {
         Connection conn = DBDataSource.getJDBCConnection();
         OraclePreparedStatement pstmt = null;
         ResultSet rs = null;
         Long returnNumero = null;
         try {
 
-            String query = "insert into Users(username,pwd,photo) values (?,?,?) returning numero into ?";
+            String query = "insert into Users(username,pwd,email,photo) values (?,?,?,?) returning numero into ?";
             System.out.println("insertquery ->" + query);
 
             pstmt = (OraclePreparedStatement) conn.prepareStatement(query); //create a statement
             pstmt.setString(1, username);
             pstmt.setString(2,pwd);
-            pstmt.setBlob(3,photo);
-            pstmt.setLong(4, OracleTypes.NUMBER);
+            pstmt.setString(3,email);
+            pstmt.setBlob(4,photo);
+            pstmt.setLong(5, OracleTypes.NUMBER);
 
             int count = pstmt.executeUpdate();
             conn.commit();
@@ -97,9 +99,9 @@ public class UsersDAO {
         }
     }
     
-    public Long updateProfil(Long id,String username,String pwd, Blob photo){
+    public Long updateProfil(Long id, String username, String pwd, String email, Blob photo){
         int executeUpdate = 0;
-            String query = null, endquery = null,susername = null, spwd = null, sphoto = null;
+            String query = null, endquery = null,susername = null, spwd = null, semail = null, sphoto = null;
             Connection conn = DBDataSource.getJDBCConnection();
             Statement stmt = null;
             try {
@@ -113,6 +115,9 @@ public class UsersDAO {
                 }
                 if (pwd != null) {
                     spwd = " PWD='" + pwd + "'";
+                }
+                if (pwd != null) {
+                    semail = " EMAIL='" + email + "'";
                 }
                 if (photo != null) {
                     sphoto = " PHOTO='" + photo + "'";

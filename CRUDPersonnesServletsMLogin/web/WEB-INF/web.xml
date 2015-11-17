@@ -44,6 +44,10 @@
         <servlet-name>ServletEditerProfil</servlet-name>
         <servlet-class>servlets.ServletEditerProfil</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletEnvoiBon</servlet-name>
+        <servlet-class>servlets.ServletEnvoiBon</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletCreationPersonne</servlet-name>
         <url-pattern>/ServletCreationPersonne</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>ServletEditerProfil</servlet-name>
         <url-pattern>/ServletEditerProfil</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletEnvoiBon</servlet-name>
+        <url-pattern>/ServletEnvoiBon</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
