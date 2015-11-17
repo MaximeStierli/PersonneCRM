@@ -24,7 +24,7 @@ public class AjoutDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
-            String query = "SELECT COUNT * AS total FROM Ajout WHERE users_numero = ?";
+            String query = "SELECT * FROM AJOUT WHERE users_numero = ? AND EXTRACT(month from dateAjout) = EXTRACT(month from sysdate) AND EXTRACT(year from dateAjout) = EXTRACT(year from sysdate)";
             
             stmt = conn.prepareStatement(query);        
             stmt.setLong(1, users_id);
