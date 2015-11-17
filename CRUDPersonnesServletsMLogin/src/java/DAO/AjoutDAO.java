@@ -21,7 +21,7 @@ import oracle.jdbc.OracleTypes;
  */
 public class AjoutDAO {
     public AjoutDAO(){};
-    // attribut id??  id = ajout_user?
+
     public int countAjout(Long users_id) {
         Connection conn = DBDataSource.getJDBCConnection();
         PreparedStatement stmt = null;
