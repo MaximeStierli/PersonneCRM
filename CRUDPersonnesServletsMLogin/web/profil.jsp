@@ -40,24 +40,26 @@
     %>
 
     <%
-     UsersDAO userDao = new UsersDAO();
-     Users user = userDao.select(username);
-     //test user1
-     // car userDao.select(username) retourne tjrs  null 
-     Users user1 = new Users((long)1 ,"nom" , "adress");
-     String name = user1.getUsername();
-     String mail = user1.getEmail();
-     
-    AjoutDAO ajoutDao = new AjoutDAO();
-    int nbPoint = ajoutDao.countAjout(user1.getId());
+        UsersDAO userDao = new UsersDAO();
+        Users user = userDao.select(username);
+        //test user1
+        // car userDao.select(username) retourne tjrs  null 
+        Users user1 = new Users((long) 1, "nom", "adress");
+        String name = user1.getUsername();
+        String mail = user1.getEmail();
+
+        AjoutDAO ajoutDao = new AjoutDAO();
+        int nbPoint = ajoutDao.countAjout(user1.getId());
     %>    
     <form method="post" action="modefierPwd.jsp">
         <div  style="width:900px ; height:600px; padding-left: 20px; padding-top: 20px;  margin-left:0px; margin-top: 100px; background: whitesmoke ">
-            <img  class= "Imagee" src="<%=src%>" alt= "ImageProfil" width="200px" height="200px" />
+            <legend>Votre profil </legend>
+            <div style="padding-left: 150px;">
+                <img  class= "Imagee" src="<%=src%>" alt= "ImageProfil" width="200px" height="200px" />
             <br>
             <br>
 
-            <table style="width:80%; border-color:white ">
+            <table style="width:90%; border-color:white ">
                 <tr>
                     <td>Nom utilisateur</td>
                     <td><%=name%></td> 
@@ -71,7 +73,10 @@
                 <tr>
                     <td>mots de passe</td>
                     <td>********</td> 
-                    <td><input type="submit" value="modifier mots de passe"></td>
+                    <td><div class="col-md-4">
+                            <input type="submit" value="modifier MDP" class="btn btn-primary"></input>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <td>Nombre de point</td>
@@ -79,8 +84,10 @@
                     <td></td>
                 </tr>
             </table> 
+            </div>
+        </div> 
     </form>
-</div> 
+
 
 
 </html>

@@ -59,7 +59,7 @@ public class ServletEditerProfil extends HttpServlet {
             // reste photo a traiter après resquest.getAttribut(""); si possible d'ajouter un attribut a une servlet de puis jsp
            }else{
                
-           request.setAttribute("EditUserError" , "error droit");
+           request.setAttribute("EditUserError" , "error");
            
            }    
         } finally {
