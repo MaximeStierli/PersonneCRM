@@ -48,6 +48,10 @@
         <servlet-name>ServletEnvoiBon</servlet-name>
         <servlet-class>servlets.ServletEnvoiBon</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>testImage</servlet-name>
+        <servlet-class>servlets.testImage</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletCreationPersonne</servlet-name>
         <url-pattern>/ServletCreationPersonne</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>ServletEnvoiBon</servlet-name>
         <url-pattern>/ServletEnvoiBon</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>testImage</servlet-name>
+        <url-pattern>/testImage</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -55,7 +55,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Profil</a></li>
+                <li><a href="profil.jsp">Profil</a></li>
                 <li><a href="#">Déconnexion</a></li>
             </ul>
 

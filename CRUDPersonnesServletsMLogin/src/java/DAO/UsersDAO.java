@@ -6,6 +6,7 @@
 package DAO;
 
 import Model.Users;
+import java.awt.Image;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -21,6 +22,36 @@ import oracle.jdbc.OracleTypes;
  */
 public class UsersDAO {
     public UsersDAO(){};
+
+     public Image getphotoById (long user_id){
+     Connection conn = DBDataSource.getJDBCConnection();
+         System.out.println("connexion base donnée sucsse");
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            String query = "SELECT BLOBTOIMAGE(?) as image FROM DUAL";
+            
+            stmt = conn.prepareStatement(query);        
+            stmt.setLong(1, user_id);
+            rs = stmt.executeQuery();
+            System.out.println("image avant finally");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                stmt.close();
+                conn.close();
+                System.out.println("image finally");
+                System.out.println(((Image) rs.getObject("image")).toString());
+                return (Image) rs.getObject("image");
+                
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return null;
+            }
+        } 
+   }
 
     public Users select(String username) {
         Connection conn = DBDataSource.getJDBCConnection();
