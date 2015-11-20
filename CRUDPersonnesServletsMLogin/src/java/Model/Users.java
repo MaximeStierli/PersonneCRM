@@ -24,7 +24,8 @@ public class Users {
      public Users(String username) {
         this.username = username;
     }
-     public Users(String username,String adress) {
+     public Users(Long id,String username,String adress) {
+        this.id = id;
         this.username = username;
         this.email = adress ;
     }

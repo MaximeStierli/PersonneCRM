@@ -4,6 +4,7 @@
     Author     : yasmine.mabrouk
 --%>
 
+<%@page import="DAO.AjoutDAO"%>
 <%@page import="servlets.HtmlHttpUtils"%>
 <%@page import="java.awt.Image"%>
 <%@page import="Model.Users"%>
@@ -42,13 +43,13 @@
      UsersDAO userDao = new UsersDAO();
      Users user = userDao.select(username);
      //test user1
-     Users user1 = new Users("nom" , "adress");
+     // car userDao.select(username) retourne tjrs  null 
+     Users user1 = new Users((long)1 ,"nom" , "adress");
      String name = user1.getUsername();
      String mail = user1.getEmail();
-     Number nbPoint = userDao.getNbPoint(username);
      
-     //AjoutDAO ajoutDao = new AjoutDAO();
-    // Number nbPoint = ajoutDao.countAjout(user.getId());
+    AjoutDAO ajoutDao = new AjoutDAO();
+    int nbPoint = ajoutDao.countAjout(user1.getId());
     %>    
     <form method="post" action="modefierPwd.jsp">
         <div  style="width:900px ; height:600px; padding-left: 20px; padding-top: 20px;  margin-left:0px; margin-top: 100px; background: whitesmoke ">
