@@ -44,7 +44,7 @@
         Users user = userDao.select(username);
         //test user1
         // car userDao.select(username) retourne tjrs  null 
-        Users user1 = new Users((long) 1, "nom", "adress");
+        Users user1 = new Users((long) 1, "nom", "adresse");
         String name = user1.getUsername();
         String mail = user1.getEmail();
 
@@ -61,17 +61,17 @@
 
             <table style="width:90%; border-color:white ">
                 <tr>
-                    <td>Nom utilisateur</td>
+                    <td>Nom d'utilisateur</td>
                     <td><%=name%></td> 
                     <td></td>
                 </tr>
                 <tr>
-                    <td>Adress E-mail</td>
+                    <td>Adresse E-mail</td>
                     <td><%=mail%></td> 
                     <td></td>
                 </tr>
                 <tr>
-                    <td>mots de passe</td>
+                    <td>mot de passe</td>
                     <td>********</td> 
                     <td><div class="col-md-4">
                             <input type="submit" value="modifier MDP" class="btn btn-primary"></input>

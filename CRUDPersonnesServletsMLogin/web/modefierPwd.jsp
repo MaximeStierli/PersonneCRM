@@ -26,7 +26,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form class="form-horizontal"method="post" action="ServletEditeProfil">
+        <form class="form-horizontal"method="post" action="ServletModefiPwd">
         <div  style="width:900px ; height:600px; padding-left: 20px; padding-top: 20px;  margin-left:0px; margin-top: 100px; background: whitesmoke ">
             <fieldset>
 
@@ -35,7 +35,7 @@
 
                 <!-- Password input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="Ancien mots passe">Ancien mots de passe</label>
+                    <label class="col-md-4 control-label" >Ancien mots de passe</label>
                     <div class="col-md-4">
                         <input id="Ancien mots passe" name="Ancien mots passe" type="password" placeholder="votre ancien mots de passe " class="form-control input-md">
 
@@ -44,7 +44,7 @@
 
                 <!-- Password input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="passwordinput">Nouveau mots de passe</label>
+                    <label class="col-md-4 control-label" >Nouveau mots de passe</label>
                     <div class="col-md-4">
                         <input id="passwordinput" name="pwd" type="password" placeholder="votre nouveau mots de passe" class="form-control input-md">
 
@@ -53,7 +53,7 @@
 
                 <!-- Password input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="passwordinput">confirmer mots de passe </label>
+                    <label class="col-md-4 control-label" >confirmer mots de passe </label>
                     <div class="col-md-4">
                         <input id="passwordinput" name="passwordinput" type="password" placeholder="confirmer votre nouveau mots de passe" class="form-control input-md">
 
@@ -62,7 +62,7 @@
 
                 <!-- Button -->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for=""></label>
+                    <label class="col-md-4 control-label" ></label>
                     <div class="col-md-4">
                         <button id="" name="" class="btn btn-primary">modifier</button>
                     </div>
