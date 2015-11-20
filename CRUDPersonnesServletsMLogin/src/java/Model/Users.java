@@ -24,6 +24,10 @@ public class Users {
      public Users(String username) {
         this.username = username;
     }
+     public Users(String username,String adress) {
+        this.username = username;
+        this.email = adress ;
+    }
 
     public Long getId() {
         return id;

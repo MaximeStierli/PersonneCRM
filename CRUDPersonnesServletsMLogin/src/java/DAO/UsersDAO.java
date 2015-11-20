@@ -22,6 +22,11 @@ import oracle.jdbc.OracleTypes;
  */
 public class UsersDAO {
     public UsersDAO(){};
+    
+    // a faire
+    public Number getNbPoint(String username){
+    return 0 ;
+    }
 
      public Image getphotoById (long user_id){
      Connection conn = DBDataSource.getJDBCConnection();

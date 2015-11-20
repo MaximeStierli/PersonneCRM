@@ -52,6 +52,10 @@
         <servlet-name>testImage</servlet-name>
         <servlet-class>servlets.testImage</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletModefiPwd</servlet-name>
+        <servlet-class>servlets.ServletModefiPwd</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletCreationPersonne</servlet-name>
         <url-pattern>/ServletCreationPersonne</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>testImage</servlet-name>
         <url-pattern>/testImage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletModefiPwd</servlet-name>
+        <url-pattern>/ServletModefiPwd</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
