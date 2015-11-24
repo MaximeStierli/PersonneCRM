@@ -54,7 +54,7 @@
         
         
         
-        <div  style="width:900px ; height:600px; padding-left: 20px; padding-top: 20px;  margin-left:0px; margin-top: 100px; background: whitesmoke ">
+        <div  style="width:900px ; height:600px; padding-left: 20px; padding-top: 20px;  margin-left:0px; margin-top: 100px; background: white; ">
             <legend>Votre profil </legend>
                     <%
                         if (session.getAttribute("pwdModifier") != null) {
@@ -69,7 +69,7 @@
                      session.setAttribute("pwdModifier", null);
                     %>
             <div style="padding-left: 150px;">
-                <img  class= "Imagee" src="<%=src%>" alt= "ImageProfil" width="200px" height="200px" />
+                <img  class= "Imagee" src="<%=src%>" alt= "ImageProfil" class= "img-thumbnail" width="200px" height="200px" />
             <br>
             <br>
 
@@ -85,10 +85,10 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td>mot de passe</td>
+                    <td>Mot de passe</td>
                     <td>********</td> 
                     <td><div class="col-md-4">
-                            <input type="submit" value="modifier MDP" class="btn btn-primary"></input>
+                            <input type="submit" value="Modifier MDP" class="btn btn-primary"></input>
                         </div>
                     </td>
                 </tr>
