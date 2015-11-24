@@ -36,7 +36,7 @@ public class ServletEditerProfil extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            request.setAttribute("EditUserError" , null);
+            request.setAttribute("EditUserError" ,"sucess");
             
             //recupere l'attribut username de la session
             HttpSession s = request.getSession(true);
@@ -47,20 +47,28 @@ public class ServletEditerProfil extends HttpServlet {
             Users userEnCour = usersDAO.select(username);
             
             //recupérer user propriétaire de profil 
-            Users userProfil = usersDAO.select(request.getParameter("usermane"));
+           // Users userProfil = usersDAO.select(request.getParameter("usermane"));
             
             
-           if(userEnCour.getId().equals(userProfil.getId()) ){ 
-            Long error = usersDAO.updateProfil(userProfil.getId(),
+          // if(userEnCour.getId().equals(userProfil.getId()) ){ 
+          if( request.getParameter("pwd").equals(request.getParameter("pwd2")) &&
+                  request.getParameter("Ancien_mots_passe").equals((String)userEnCour.getPwd())){
+            Long error = usersDAO.updateProfil(userEnCour.getId(),
                                                 null,
                                                 request.getParameter("pwd"),
                                                 null,
                                                 null);
-            // reste photo a traiter après resquest.getAttribut(""); si possible d'ajouter un attribut a une servlet de puis jsp
+            if(error>0){
+           request.getRequestDispatcher("/profil.jsp").forward(request, response); 
+            }else{
+               
+           request.setAttribute("EditUserError" , "error");
+           request.getRequestDispatcher("/modefierPwd.jsp").forward(request, response);
+           }
            }else{
                
            request.setAttribute("EditUserError" , "error");
-           
+           request.getRequestDispatcher("/modefierPwd.jsp").forward(request, response);
            }    
         } finally {
             out.close();
