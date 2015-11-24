@@ -51,8 +51,23 @@
         int nbPoint = ajoutDao.countAjout(user.getId());
     %>    
     <form method="post" action="modefierPwd.jsp">
+        
+        
+        
         <div  style="width:900px ; height:600px; padding-left: 20px; padding-top: 20px;  margin-left:0px; margin-top: 100px; background: whitesmoke ">
             <legend>Votre profil </legend>
+                    <%
+                        if (session.getAttribute("pwdModifier") != null) {
+                    %>
+                   
+                    <div  class="alert alert-success" role="alert" style="margin-left: 500px; margin-right: 20px; " >
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Error:</span>
+                        Votre mot de passe a été modifié avec succès
+                    </div>
+                    <% }
+                     session.setAttribute("pwdModifier", null);
+                    %>
             <div style="padding-left: 150px;">
                 <img  class= "Imagee" src="<%=src%>" alt= "ImageProfil" width="200px" height="200px" />
             <br>

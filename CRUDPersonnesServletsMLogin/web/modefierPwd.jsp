@@ -4,6 +4,8 @@
     Author     : yasmine.mabrouk
 --%>
 
+<%@page import="Model.Users"%>
+<%@page import="DAO.UsersDAO"%>
 <%@page import="servlets.HtmlHttpUtils"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -27,49 +29,72 @@
     </head>
     <body>
         <form class="form-horizontal"method="post" action="ServletEditerProfil">
-        <div  style="width:900px ; height:600px; padding-left: 20px; padding-top: 20px;  margin-left:0px; margin-top: 100px; background: white; ">
-            <fieldset>
+            <div  style="width:900px ; height:600px; padding-left: 20px; padding-top: 20px;  margin-left:0px; margin-top: 100px; background: white; ">
+                <fieldset>
 
-                <!-- Form Name -->
-                <legend>Changer mot de passe </legend>
+                    <!-- Form Name -->
+                    <legend>Changer mot de passe </legend>
 
-                <!-- Password input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" >Ancien mot de passe</label>
-                    <div class="col-md-4">
-                        <input id="Ancien mots passe" name="Ancien_mots_passe" type="password" placeholder="votre ancien mots de passe " class="form-control input-md" required="required">
+                    <!-- Password input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Ancien mot de passe</label>
+                        <div class="col-md-4">
+                            <input id="Ancien mots passe" name="Ancien_mots_passe" type="password" placeholder="votre ancien mots de passe " class="form-control input-md" required="required">
 
+                        </div>
                     </div>
-                </div>
 
-                <!-- Password input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" >Nouveau mot de passe</label>
-                    <div class="col-md-4">
-                        <input id="passwordinput" name="pwd" type="password" placeholder="votre nouveau mots de passe" class="form-control input-md" required="required">
+                    <%
+                        if (session.getAttribute("editeProfilError1") != null) {
+                    %>
 
+                    <div class="alert alert-danger" role="alert" style="margin-left: 110px; margin-right: 300px;" >
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Error:</span>
+                        Ancien mot de passe est incorrect
                     </div>
-                </div>
+                    <% }
+                    session.setAttribute("editeProfilError1", null);
+                    %>
+                    <!-- Password input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Nouveau mot de passe</label>
+                        <div class="col-md-4">
+                            <input id="passwordinput" name="pwd" type="password" placeholder="votre nouveau mots de passe" class="form-control input-md" required="required">
 
-                <!-- Password input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" >Confirmer mot de passe </label>
-                    <div class="col-md-4">
-                        <input id="passwordinput" name="pwd2" type="password" placeholder="confirmer votre nouveau mots de passe" class="form-control input-md" required="required">
-
+                        </div>
                     </div>
-                </div>
 
-                <!-- Button -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" ></label>
-                    <div class="col-md-4">
-                        <button id="" name="" class="btn btn-primary">Modifier</button>
+                    <!-- Password input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Confirmer mot de passe </label>
+                        <div class="col-md-4">
+                            <input id="passwordinput" name="pwd2" type="password" placeholder="confirmer votre nouveau mots de passe" class="form-control input-md" required="required">
+
+                        </div>
                     </div>
-                </div>
+                    <%
+                        if (session.getAttribute("editeProfilError2") != null) {
+                    %>
+                   
+                    <div class="alert alert-danger" role="alert" style="margin-left: 110px; margin-right: 300px;" >
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Error:</span>
+                        Les mots de passe ne sont pas identiques
+                    </div>
+                    <% }
+                     session.setAttribute("editeProfilError2", null);
+                    %>
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" ></label>
+                        <div class="col-md-4">
+                            <button id="" name="" class="btn btn-primary">Modifier</button>
+                        </div>
+                    </div>
 
-            </fieldset>
-        </div>
+                </fieldset>
+            </div>
         </form>
 
     </body>
