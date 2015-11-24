@@ -35,8 +35,8 @@
     <%
         HttpSession s = request.getSession(true);
         String username = (String) s.getAttribute("username");
-        username = username + ".PNG";
-        String src = "bootstrap\\img\\" + username;
+        username = username;
+        String src = "bootstrap\\img\\" + username  + ".PNG";
     %>
 
     <%
@@ -44,12 +44,11 @@
         Users user = userDao.select(username);
         //test user1
         // car userDao.select(username) retourne tjrs  null 
-        Users user1 = new Users((long) 1, "nom", "adresse");
-        String name = user1.getUsername();
-        String mail = user1.getEmail();
+        String name = user.getUsername();
+        String mail = user.getEmail();
 
         AjoutDAO ajoutDao = new AjoutDAO();
-        int nbPoint = ajoutDao.countAjout(user1.getId());
+        int nbPoint = ajoutDao.countAjout(user.getId());
     %>    
     <form method="post" action="modefierPwd.jsp">
         <div  style="width:900px ; height:600px; padding-left: 20px; padding-top: 20px;  margin-left:0px; margin-top: 100px; background: whitesmoke ">

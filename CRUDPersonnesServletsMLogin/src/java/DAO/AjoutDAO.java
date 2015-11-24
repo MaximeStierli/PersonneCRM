@@ -23,13 +23,15 @@ public class AjoutDAO {
         Connection conn = DBDataSource.getJDBCConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
+        int total = 0;
         try {
-            String query = "SELECT * FROM AJOUT WHERE users_numero = ? AND EXTRACT(month from dateAjout) = EXTRACT(month from sysdate) AND EXTRACT(year from dateAjout) = EXTRACT(year from sysdate)";
+            String query = "SELECT COUNT(*) AS TOTAL FROM AJOUT WHERE users_numero = ? AND EXTRACT(month from dateAjout) = EXTRACT(month from sysdate) AND EXTRACT(year from dateAjout) = EXTRACT(year from sysdate)";
             
             stmt = conn.prepareStatement(query);        
             stmt.setLong(1, users_id);
             rs = stmt.executeQuery();
-
+            rs.next();
+            total = rs.getInt("total");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -37,7 +39,7 @@ public class AjoutDAO {
                 rs.close();
                 stmt.close();
                 conn.close();
-                return rs.getInt("total");
+                return total;
             } catch (SQLException e) {
                 e.printStackTrace();
                 return 0;
