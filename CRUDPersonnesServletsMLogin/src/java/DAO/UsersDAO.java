@@ -147,13 +147,16 @@ public class UsersDAO {
                 if (pwd != null) {
                     spwd = " PWD='" + pwd + "'";
                 }
-                if (pwd != null) {
+                if (email != null) {
                     semail = " EMAIL='" + email + "'";
                 }
                 if (photo != null) {
                     sphoto = " PHOTO='" + photo + "'";
                 }
-
+                query = query.concat(susername);
+                query = query.concat(spwd);
+                query = query.concat(semail);
+                query = query.concat(sphoto);
                 query = query.concat(endquery);
 
                 System.out.println("updatequery ->" + query);
