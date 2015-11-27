@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Model.Personne;
 import Model.Users;
 import java.awt.Image;
 import java.sql.Blob;
@@ -13,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.ArrayList;
 import oracle.jdbc.OraclePreparedStatement;
 import oracle.jdbc.OracleTypes;
 
@@ -22,6 +24,41 @@ import oracle.jdbc.OracleTypes;
  */
 public class UsersDAO {
     public UsersDAO(){};
+    
+        public ArrayList<Users> selectAll() {
+        Connection conn = DBDataSource.getJDBCConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Users u = new Users();
+         ArrayList<Users> users = new  ArrayList<Users>();
+        try {
+            String query = "SELECT * FROM Users ";
+            
+            stmt = conn.prepareStatement(query);
+            rs = stmt.executeQuery();
+           
+            while(rs.next()){
+                u.setId(rs.getLong("Numero"));
+                u.setUsername(rs.getString("Username"));
+                u.setEmail(rs.getString("email"));
+                u.setPwd(rs.getString("pwd"));
+                u.setPhoto(rs.getBlob("Photo"));
+                users.add(u);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                stmt.close();
+                conn.close();
+                 return users;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return null;
+            }
+        } 
+    }
 
      public Image getphotoById (long user_id){
      Connection conn = DBDataSource.getJDBCConnection();

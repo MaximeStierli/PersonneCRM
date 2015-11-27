@@ -6,12 +6,14 @@
 package DAO;
 
 import Model.Commentaire;
+import Model.Users;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Vector;
 import oracle.jdbc.OraclePreparedStatement;
 import oracle.jdbc.OracleTypes;
@@ -22,6 +24,56 @@ import oracle.jdbc.OracleTypes;
  */
 public class CommentaireDAO {
     public CommentaireDAO(){};
+        public ArrayList<Users> top5Commentaire() {
+        UsersDAO usersDAO = new UsersDAO();
+        ArrayList<Users> usersSelect = usersDAO.selectAll();
+        ArrayList<Users> userTrie = new ArrayList<Users>();
+        int value = this.countCommentaire(usersSelect.get(0).getId());
+        int index = 0;
+        Users user = null ;
+        int conteur ;
+        while (!usersSelect.isEmpty()) {
+            conteur = 0;
+            for (Users u : usersSelect) {
+                if (countCommentaire(u.getId()) < value) {
+                    value = countCommentaire(u.getId());
+                    index = conteur;
+                    user = u;
+                }
+                conteur = conteur + 1;
+            }
+            userTrie.add(user);
+            usersSelect.remove(index);
+        }
+      return userTrie ;
+    }
+     public int countCommentaire(Long users_id) {
+        Connection conn = DBDataSource.getJDBCConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int total = 0;
+        try {
+            String query = "SELECT COUNT(*) AS TOTAL FROM COMMENTAIRE WHERE users_numero = ? AND EXTRACT(month from dateAjout) = EXTRACT(month from sysdate) AND EXTRACT(year from dateAjout) = EXTRACT(year from sysdate)";
+
+            stmt = conn.prepareStatement(query);
+            stmt.setLong(1, users_id);
+            rs = stmt.executeQuery();
+            rs.next();
+            total = rs.getInt("total");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                stmt.close();
+                conn.close();
+                return total;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return 0;
+            }
+        }
+    }    
 
     public Vector<Commentaire>  selectAll() {
         Connection conn = DBDataSource.getJDBCConnection();
