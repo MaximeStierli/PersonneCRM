@@ -16,12 +16,16 @@
     String active = request.getParameter("url");
     //int nbEnregistrement = PersonneDAO.nbEnregistrements();
 
-    String activeIndex = "", activeListePersonnes = "", actSrc = "", actHlp = "", actProf = "";
+    String activeIndex = "", activeListePersonnes = "", activeAjouterPersonne = "", activeProfil = "", actSrc = "", actHlp = "", actProf = "";
 
-    if (active.equals("/index.jsp")) {
+    if (active.equals("/accueil.jsp")) {
         activeIndex = "class=\"active\"";
     } else if (active.equals("/listeDesPersonnes.jsp")) {
         activeListePersonnes = "class=\"active\"";
+    } else if (active.equals("/ajouterPersonne.jsp")) {
+        activeAjouterPersonne = "class=\"active\"";
+    } else if (active.equals("/profil.jsp")) {
+        activeProfil = "class=\"active\"";
     } /*else if (active.equals("/rechercherPersonne.jsp")) {
      actSrc = "class=\"active\"";
      } else if (active.equals("/aide.jsp")) {
@@ -33,7 +37,7 @@
 
 
 <nav class="navbar navbar-default" style="border-radius:0 0 0 0;">
-    <div class="container-fluid">
+    <div class="container-fluid" >
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -43,7 +47,7 @@
                 <span class="icon-bar"></span>
             </button>
            
-            <a class="navbar-brand" href="#">Arc'People</a>
+            <a class="navbar-brand">Arc'People</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -51,12 +55,12 @@
             <ul class="nav navbar-nav">
                 <li <% out.println(activeIndex);%>><a href="accueil.jsp">Accueil <span class="sr-only">(current)</span></a></li>
                 <li <% out.println(activeListePersonnes);%>><a href="listeDesPersonnes.jsp">Liste des personnes</a></li>
-                <li><a href="#">Ajouter des personnes</a></li>
+                <li <% out.println(activeAjouterPersonne);%>><a href="ajouterPersonne.jsp">Ajouter des personnes</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="profil.jsp">Profil</a></li>
-                <li><a href="#">Déconnexion</a></li>
+                <li <% out.println(activeProfil);%>><a href="profil.jsp">Profil</a></li>
+                <li><a href="ServletLogout">Déconnexion</a></li>
             </ul>
 
         </div><!-- /.navbar-collapse -->

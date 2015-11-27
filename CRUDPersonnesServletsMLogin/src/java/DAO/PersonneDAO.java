@@ -36,10 +36,11 @@ public class PersonneDAO {
 
             stmt = con.createStatement();
 
-            String requete = "SELECT NOM,PRENOM,ADRESSE,VILLE FROM personne";
+            String requete = "SELECT NUMERO, NOM,PRENOM,ADRESSE,VILLE FROM personne";
             rs = stmt.executeQuery(requete);
             while (rs.next()) {
                 Personne pers = new Personne();
+                pers.setId(rs.getLong("NUMERO"));
                 pers.setNom(rs.getString("NOM"));
                 pers.setPrenom(rs.getString("PRENOM"));
                 pers.setAdresse(rs.getString("ADRESSE"));

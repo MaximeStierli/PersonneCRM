@@ -40,7 +40,7 @@ public class ServletFaireEffacementPersonne extends HttpServlet {
                         pdao.delete(new Personne(Long.parseLong(id), null, null, null, null));
                     }
                 }
-                request.getRequestDispatcher("/index.jsp").forward(request, response);
+                request.getRequestDispatcher("/listeDesPersonnes.jsp").forward(request, response);
             }
         } finally {
             out.close();

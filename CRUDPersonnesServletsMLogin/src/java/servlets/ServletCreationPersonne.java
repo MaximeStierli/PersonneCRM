@@ -32,7 +32,7 @@ public class ServletCreationPersonne extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         String nom = null, prenom = null, adresse = null, ville = null;
@@ -64,7 +64,7 @@ public class ServletCreationPersonne extends HttpServlet {
                 AjoutDAO ajoutDAO = new AjoutDAO();
                 ajoutDAO.create(userEnCour.getId());
             }
-            HtmlHttpUtils.doFooter(out);
+            request.getRequestDispatcher("/listeDesPersonnes.jsp").forward(request, response);
         } finally {
             out.close();
         }

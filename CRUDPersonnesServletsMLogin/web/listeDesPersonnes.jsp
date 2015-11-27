@@ -14,8 +14,7 @@
 
 <%
     /* Vérification que l'utilisateur est passé par le login et n'accède pas
-     * directement à la page "index.jsp" dans URL. En cas de fraude,
-     * retour au login et on invalide la session en cours avec la servlet logout.
+     * directement à la page "index.jsp" par l'URL.
      */
     if (!HtmlHttpUtils.isAuthenticate(request)) {
         response.sendRedirect("ServletLogout");
@@ -29,7 +28,7 @@
     listePers = new ArrayList<Personne>();
 
     // Initialiser la liste de client ou la récupérer de la session
-    if (session.getAttribute("clients") == null) {
+    if (session.getAttribute("personnes") == null) {
         listePers.addAll(PersonneDAO.findAll());
     } else {
         listePers.addAll((ArrayList) session.getAttribute("personnes"));
@@ -37,6 +36,10 @@
     }
 
 %> 
+
+<jsp:include page="bootstrap/template/headerApp.jsp">
+    <jsp:param name="typePage" value="standard" />
+</jsp:include>
 
 <jsp:include page="bootstrap/template/Menu.jsp">
     <jsp:param name="url" value="<%=request.getServletPath()%>" />
@@ -47,7 +50,7 @@
         <meta charset="utf-8">
         <title>Liste des personnes</title>
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -59,7 +62,31 @@
         <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/plug-ins/1.10.10/i18n/French.json"></script>
         <!-- DATATABLE-->
 
-
+        <script src='nprogress.js'></script>
+        <link rel='stylesheet' href='bootstrap/css/nprogress.css'/>
+        <script src="/js/jquery-2.1.1.min.js"></script>
+        <script src="bootstrap/js/nprogress.js"></script>
+        <script>
+            $('body').show();
+            $('.version').text(NProgress.version);
+            NProgress.start();
+            setTimeout(function () {
+                NProgress.done();
+                $('.fade').removeClass('out');
+            }, 1000);
+            $("#b-0").click(function () {
+                NProgress.start();
+            });
+            $("#b-40").click(function () {
+                NProgress.set(0.4);
+            });
+            $("#b-inc").click(function () {
+                NProgress.inc();
+            });
+            $("#b-100").click(function () {
+                NProgress.done();
+            });
+        </script>
         <script>
             jQuery(document).ready(function () {
                 $('#lstPersonnes').DataTable({
@@ -88,43 +115,47 @@
                     }
 
                 });
-
             });
         </script>
     </head>
 
-    <body style="background-color:white;">
+    <body>
         <div id="wrap">
             <div class="container">
-                <table id="lstPersonnes" class="datatable table table-striped table-bordered">
+                <table id="lstPersonnes" cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th>Nom</th>
                             <th>Prénom</th>
-                            <th>Ville</th>
                             <th>Adresse</th>
+                            <th>Ville</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <% for (Personne pers : listePers) { %> 
-                        <tr class="lignePersonne" id="<% out.print(pers.getId()); %>">
 
+                        <tr class="lignePersonne" id="<% out.print(pers.getId()); %>">
                             <td>  <% out.print(pers.getNom()); %> </td>
                             <td>  <% out.print(pers.getPrenom()); %> </td>  
-                            <td>  <% out.print(pers.getVille()); %> </td>
                             <td>  <% out.print(pers.getAdresse()); %> </td>
-
-                            <td class=" dt-body-center"><a class="btn btn-default btn-lg glyphicon glyphicon-edit" title="Modifier" href="ServletMAJPersonne"></a>
-                                <a class="btn btn-default btn-lg glyphicon glyphicon-trash" title="Supprimer" href="ServletEffacerPersonne" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette personne ?'))"></a>
+                            <td>  <% out.print(pers.getVille()); %> </td>
+                            <td class=" dt-body-center"><a class="btn btn-default btn-sm glyphicon glyphicon-pencil" title="Modifier" href="modifierPersonne.jsp?id=<%= pers.getId() %>&nom=<%= pers.getNom() %>&prenom=<%= pers.getPrenom() %>&adresse=<%= pers.getAdresse() %>&ville=<%= pers.getVille() %>"></a>
+                                <a class="btn btn-default btn-sm glyphicon glyphicon-remove" title="Supprimer" href="ServletFaireEffacementPersonne?id=<%= pers.getId() %>" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette personne ?'))"></a>
 
                             </td>
-
+                            
                         </tr>
                         <% }%>
                     </tbody>
                 </table>
             </div>
         </div>
+
     </body>
 </html>
+<script>
+    $("#b-100").click(function () {
+        NProgress.done();
+    });
+</script>
