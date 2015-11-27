@@ -138,40 +138,60 @@ public class UsersDAO {
             try {
                                
                 boolean onedone = false;
-                query = "update USERS SET";
+                query = "update USERS SET ";
+                System.out.println("init query " + query);
                 endquery = " WHERE numero=" + id;
 
                 if (username != null) {
                     susername = " USERNAME='" + username + "'";
                 }
+                System.out.println("spwd " + spwd);
                 if (pwd != null) {
-                    if (username !=null){
-                        spwd = ",";
-                    }else{
-                        spwd = "";
-                    }
-                    spwd += " PWD='" + pwd + "'";
+             
+                    spwd = " PWD='" + pwd + "'";
                 }
+                System.out.println("spwd " + spwd);
                 if (email != null) {
-                    if (pwd !=null){
-                        semail = ",";
-                    }else{
-                        semail = "";
-                    }
-                    semail += " EMAIL='" + email + "'";
+                    
+                    semail = " EMAIL='" + email + "'";
                 }
                 if (photo != null) {
-                    if (email !=null){
-                        sphoto = ",";
-                    }else{
-                        sphoto = "";
-                    }
-                    sphoto += " PHOTO='" + photo + "'";
+                 
+                    sphoto = " PHOTO='" + photo + "'";
                 }
-                query = query.concat(susername);
-                query = query.concat(spwd);
-                query = query.concat(semail);
-                query = query.concat(sphoto);
+                
+                 if (susername != null) {
+                    query = query.concat(susername);
+                    onedone = true;
+                }
+           System.out.println("avant pwd query " + query);
+                 if (spwd != null) {
+                    if (onedone) {
+                        query = query.concat(",");
+                    }
+                    query = query.concat(spwd);
+                    onedone = true;
+                }
+                 System.out.println("apres pwd query " + query);
+                 if (semail != null) {
+                    if (onedone) {
+                        query = query.concat(",");
+                    }
+                    query = query.concat(semail);
+                    onedone = true;
+                }
+                 
+                 if (sphoto != null) {
+                    if (onedone) {
+                        query = query.concat(",");
+                    }
+                    query = query.concat(sphoto);
+                    onedone = true;
+                }
+                
+                
+                
+           
                 query = query.concat(endquery);
 
                 System.out.println("updatequery ->" + query);
