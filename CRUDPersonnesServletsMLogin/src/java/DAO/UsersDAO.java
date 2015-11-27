@@ -145,13 +145,28 @@ public class UsersDAO {
                     susername = " USERNAME='" + username + "'";
                 }
                 if (pwd != null) {
-                    spwd = " PWD='" + pwd + "'";
+                    if (username !=null){
+                        spwd = ",";
+                    }else{
+                        spwd = "";
+                    }
+                    spwd += " PWD='" + pwd + "'";
                 }
                 if (email != null) {
-                    semail = " EMAIL='" + email + "'";
+                    if (pwd !=null){
+                        semail = ",";
+                    }else{
+                        semail = "";
+                    }
+                    semail += " EMAIL='" + email + "'";
                 }
                 if (photo != null) {
-                    sphoto = " PHOTO='" + photo + "'";
+                    if (email !=null){
+                        sphoto = ",";
+                    }else{
+                        sphoto = "";
+                    }
+                    sphoto += " PHOTO='" + photo + "'";
                 }
                 query = query.concat(susername);
                 query = query.concat(spwd);
