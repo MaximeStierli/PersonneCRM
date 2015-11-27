@@ -39,7 +39,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" >Ancien mot de passe</label>
                         <div class="col-md-4">
-                            <input id="Ancien mots passe" name="Ancien_mots_passe" type="password" placeholder="votre ancien mots de passe " class="form-control input-md" required="required">
+                            <input id="Ancien mots passe" name="Ancien_mots_passe" type="password" placeholder="Ancien mot de passe " class="form-control input-md" required="required">
 
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" >Nouveau mot de passe</label>
                         <div class="col-md-4">
-                            <input id="passwordinput" name="pwd" type="password" placeholder="votre nouveau mots de passe" class="form-control input-md" required="required">
+                            <input id="passwordinput" name="pwd" type="password" placeholder="Nouveau mot de passe" class="form-control input-md" required="required">
 
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" >Confirmer mot de passe </label>
                         <div class="col-md-4">
-                            <input id="passwordinput" name="pwd2" type="password" placeholder="confirmer votre nouveau mots de passe" class="form-control input-md" required="required">
+                            <input id="passwordinput" name="pwd2" type="password" placeholder="Confirmer nouveau mot de passe" class="form-control input-md" required="required">
 
                         </div>
                     </div>
