@@ -59,7 +59,7 @@ public class AjoutDAO {
 
             pstmt = (OraclePreparedStatement) conn.prepareStatement(query); //create a statement
             pstmt.setLong(1, users_id);
-            pstmt.setLong(2, OracleTypes.NUMBER);
+            pstmt.registerReturnParameter(2, OracleTypes.NUMBER);
 
             int count = pstmt.executeUpdate();
             conn.commit();
