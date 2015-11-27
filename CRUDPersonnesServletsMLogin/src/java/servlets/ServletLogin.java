@@ -5,7 +5,9 @@
 package servlets;
 
 
+import DAO.UsersDAO;
 import MemoryUser.Utilisateurs;
+import Model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.jms.Session;
@@ -44,9 +46,10 @@ public class ServletLogin extends HttpServlet {
             boolean errorlogin=false;
             if (username != null && password != null) {
                 if (!username.equals("") && !password.equals("")) {
+                         UsersDAO usersDAO = new UsersDAO();
+                         Users utilusateur = usersDAO.select(username);
 
-
-                      if(Utilisateurs.verifyUser(username, password)){
+                      if(utilusateur != null && utilusateur.getPwd().equals(password)  ){
                         //CREATION HTTP SESSION
                         //request.getRequestDispatcher("/index.jsp").forward(request, response);
                         HttpSession s= request.getSession(true);
