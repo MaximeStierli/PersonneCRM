@@ -47,43 +47,42 @@ public class AjoutDAO {
         } 
     }
 
-    public void create(Long users_id) {
+    public Long create(Long users_id) {
         Connection conn = DBDataSource.getJDBCConnection();
         OraclePreparedStatement pstmt = null;
-//        ResultSet rs = null;
-//        Long returnNumero = null;
+        ResultSet rs = null;
+        Long returnNumero = null;
         try {
-            //yas returning numero into ?
-            String query = "insert into Ajout(USERS_NUMERO) values (?) ";
-            
+
+            String query = "insert into Ajout(USERS_NUMERO) values (?) returning numero into ?";
+            System.out.println("insertquery ->" + query);
 
             pstmt = (OraclePreparedStatement) conn.prepareStatement(query); //create a statement
             pstmt.setLong(1, users_id);
-            //yas pstmt.setLong(2, OracleTypes.NUMBER);
-            
-            System.out.println("insertquery ->" + query);
-            pstmt.executeUpdate();
+            pstmt.setLong(2, OracleTypes.NUMBER);
+
+            int count = pstmt.executeUpdate();
             conn.commit();
 
-//            if (count > 0) {
-//               rs = pstmt.getReturnResultSet(); //rest is not null and not empty
-//                while (rs.next()) {
-//                    returnNumero = rs.getLong(1);
-//                    System.out.println(returnNumero);
-//
-//                }
-//            }
+            if (count > 0) {
+               rs = pstmt.getReturnResultSet(); //rest is not null and not empty
+                while (rs.next()) {
+                    returnNumero = rs.getLong(1);
+                    System.out.println(returnNumero);
+
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-//                rs.close();
+                rs.close();
                 pstmt.close();
                 conn.close();
-//                return returnNumero;
+                return returnNumero;
             } catch (SQLException e) {
                 e.printStackTrace();
-//                return null;
+                return null;
             }
         }
     }
