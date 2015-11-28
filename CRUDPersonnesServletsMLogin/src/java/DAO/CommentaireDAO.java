@@ -24,26 +24,30 @@ import oracle.jdbc.OracleTypes;
  */
 public class CommentaireDAO {
     public CommentaireDAO(){};
-        public ArrayList<Users> top5Commentaire() {
+       
+         public ArrayList<Users> top5Commentaire() {
         UsersDAO usersDAO = new UsersDAO();
         ArrayList<Users> usersSelect = usersDAO.selectAll();
         ArrayList<Users> userTrie = new ArrayList<Users>();
-        int value = this.countCommentaire(usersSelect.get(0).getId());
-        int index = 0;
-        Users user = null ;
-        int conteur ;
-        while (!usersSelect.isEmpty()) {
-            conteur = 0;
-            for (Users u : usersSelect) {
-                if (countCommentaire(u.getId()) < value) {
-                    value = countCommentaire(u.getId());
-                    index = conteur;
-                    user = u;
+        int value ;
+        int index = 0  ;
+        Users user = null;
+        
+        while (!usersSelect.isEmpty()&& userTrie.size() < 5) {
+            value = -1;
+            for (int i=0 ; i <= usersSelect.size()-1 ;i++) {
+                
+                if (countCommentaire(usersSelect.get(i).getId()) >= value) {
+                    value = countCommentaire(usersSelect.get(i).getId());
+                    index = i;
+                    user = usersSelect.get(i);
                 }
-                conteur = conteur + 1;
             }
+            if (user != null){
             userTrie.add(user);
             usersSelect.remove(index);
+            user = null;
+            }
         }
       return userTrie ;
     }

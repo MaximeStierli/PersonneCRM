@@ -34,22 +34,25 @@ public class AjoutDAO {
         UsersDAO usersDAO = new UsersDAO();
         ArrayList<Users> usersSelect = usersDAO.selectAll();
         ArrayList<Users> userTrie = new ArrayList<Users>();
-        int value = this.countAjout(usersSelect.get(0).getId());
-        int index = 0;
-        Users user = null ;
-        int conteur ;
-        while (!usersSelect.isEmpty()) {
-            conteur = 0;
-            for (Users u : usersSelect) {
-                if (countAjout(u.getId()) < value) {
-                    value = countAjout(u.getId());
-                    index = conteur;
-                    user = u;
+        int value ;
+        int index = 0  ;
+        Users user = null;
+        
+        while (!usersSelect.isEmpty()&& userTrie.size() < 5) {
+            value = -1;
+            for (int i=0 ; i <= usersSelect.size()-1 ;i++) {
+                
+                if (countAjout(usersSelect.get(i).getId()) >= value) {
+                    value = countAjout(usersSelect.get(i).getId());
+                    index = i;
+                    user = usersSelect.get(i);
                 }
-                conteur = conteur + 1;
             }
+            if (user != null){
             userTrie.add(user);
             usersSelect.remove(index);
+            user = null;
+            }
         }
       return userTrie ;
     }
@@ -67,6 +70,7 @@ public class AjoutDAO {
             rs = stmt.executeQuery();
             rs.next();
             total = rs.getInt("total");
+            return total;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
