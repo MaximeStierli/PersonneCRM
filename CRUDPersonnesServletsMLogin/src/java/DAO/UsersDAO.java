@@ -138,7 +138,21 @@ public class UsersDAO {
             }
         }
     }
+    public void updateDate(Users user){
+       Connection conn = DBDataSource.getJDBCConnection();
+            PreparedStatement pstmt = null;
+            try {
+                
+                String query = "update USERS SET  DATERECEPTIONBON = SYSDATE WHERE numero = ?";
+                pstmt = (OraclePreparedStatement) conn.prepareStatement(query); //create a statement
+                 pstmt.setLong(1, user.getId());
+                 pstmt.executeUpdate();
+            conn.commit();
+             }catch(Exception e) {
+            e.printStackTrace();
+                        }
     
+    }
     public Long updateProfil(Long id, String username, String pwd, String email, Date dateReceptionBon){
         int executeUpdate = 0;
             String query = null, endquery = null,susername = null, spwd = null, semail = null, sdateReceptionBon = null;

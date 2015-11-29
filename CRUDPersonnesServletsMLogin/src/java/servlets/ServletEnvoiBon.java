@@ -33,12 +33,16 @@ public class ServletEnvoiBon extends HttpServlet {
                     HttpServletResponse response)
             throws ServletException, IOException
   {
+      
+      
       // Recipient's email ID needs to be mentioned.
       HttpSession s = request.getSession(true); 
       
       String username = (String) s.getAttribute("username");
       UsersDAO userDao = new UsersDAO();
       Users user = userDao.select(username);
+      //mettre a jour date base de donnée
+      userDao.updateDate(user );
       
       String to = user.getEmail();
  

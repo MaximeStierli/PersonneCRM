@@ -4,6 +4,9 @@
     Author     : ajtene.kurtaliq
 --%>
 
+<%@page import="Model.Users"%>
+<%@page import="DAO.UsersDAO"%>
+<%@page import="DAO.AjoutDAO"%>
 <%@page import="DAO.PersonneDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Personne"%>
@@ -153,6 +156,20 @@
         </div>
 
     </body>
+        <%
+       AjoutDAO daoAjout = new AjoutDAO();
+       UsersDAO usersDAO = new UsersDAO();
+      Users u = usersDAO.select((String) session.getAttribute("username"));
+     long nb = daoAjout.countAjout(u.getId());
+       boolean bon = u.isReceiveThisMonth();
+       if (nb > 10 && bon) { %> 
+   
+       <!-- < %@ include file="banner.jspf" %>-->
+    <jsp:include page="ServletEnvoiBon.java"/>
+
+    <%    }
+        }
+    %>
 </html>
 <script>
     $("#b-100").click(function () {
