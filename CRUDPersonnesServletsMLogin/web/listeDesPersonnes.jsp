@@ -142,34 +142,35 @@
                             <td>  <% out.print(pers.getNom()); %> </td>
                             <td>  <% out.print(pers.getPrenom()); %> </td>  
                             <td>  <% out.print(pers.getAdresse()); %> </td>
-                            <td>  <% out.print(pers.getVille()); %> </td>
-                            <td class=" dt-body-center"><a class="btn btn-default btn-sm glyphicon glyphicon-pencil" title="Modifier" href="modifierPersonne.jsp?id=<%= pers.getId() %>&nom=<%= pers.getNom() %>&prenom=<%= pers.getPrenom() %>&adresse=<%= pers.getAdresse() %>&ville=<%= pers.getVille() %>"></a>
-                                <a class="btn btn-default btn-sm glyphicon glyphicon-remove" title="Supprimer" href="ServletFaireEffacementPersonne?id=<%= pers.getId() %>" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette personne ?'))"></a>
+                            <td>  <% out.print(pers.getVille());%> </td>
+                            <td class=" dt-body-center"><a class="btn btn-default btn-sm glyphicon glyphicon-pencil" title="Modifier" href="modifierPersonne.jsp?id=<%= pers.getId()%>&nom=<%= pers.getNom()%>&prenom=<%= pers.getPrenom()%>&adresse=<%= pers.getAdresse()%>&ville=<%= pers.getVille()%>"></a>
+                                <a class="btn btn-default btn-sm glyphicon glyphicon-remove" title="Supprimer" href="ServletFaireEffacementPersonne?id=<%= pers.getId()%>" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette personne ?'))"></a>
 
                             </td>
-                            
+
                         </tr>
                         <% }%>
                     </tbody>
                 </table>
             </div>
         </div>
+    <%
+        AjoutDAO daoAjout = new AjoutDAO();
+        UsersDAO usersDAO = new UsersDAO();
+        Users u = usersDAO.select((String) session.getAttribute("username"));
+        long nb = daoAjout.countAjout(u.getId());
+        boolean bon = u.isReceiveThisMonth();
+        System.out.println("recived this month"+ bon);
+        System.out.println("nombre d'ajout " + nb);
+            if (nb >= 10 && !bon) { %> 
 
-    </body>
-        <%
-       AjoutDAO daoAjout = new AjoutDAO();
-       UsersDAO usersDAO = new UsersDAO();
-      Users u = usersDAO.select((String) session.getAttribute("username"));
-     long nb = daoAjout.countAjout(u.getId());
-       boolean bon = u.isReceiveThisMonth();
-       if (nb > 10 && bon) { %> 
-   
-       <!-- < %@ include file="banner.jspf" %>-->
-    <jsp:include page="ServletEnvoiBon.java"/>
+    <!-- < %@ include file="ServletEnvoiBon.java" %>-->
+    <jsp:include page="ServletEnvoiBon"/>
 
     <%    }
-        }
     %>
+    </body>
+
 </html>
 <script>
     $("#b-100").click(function () {
