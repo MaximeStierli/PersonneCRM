@@ -142,7 +142,7 @@ public class UsersDAO {
         }
     }
 
-    public void updateDate(Users user) throws SQLException {
+    public void updateDate(Users user){
         Connection conn = DBDataSource.getJDBCConnection();
         PreparedStatement pstmt = null;
         try {
@@ -155,8 +155,12 @@ public class UsersDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            pstmt.close();
-            conn.close();
+            try {
+                pstmt.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
     }

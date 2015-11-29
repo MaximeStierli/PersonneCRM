@@ -10,12 +10,19 @@ import Model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Properties;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -42,7 +49,7 @@ public class ServletEnvoiBon extends HttpServlet {
       UsersDAO userDao = new UsersDAO();
       Users user = userDao.select(username);
       //mettre a jour date base de donnée
-      userDao.updateDate(user );
+      userDao.updateDate(user);
       
       String to = user.getEmail();
  
@@ -64,7 +71,11 @@ public class ServletEnvoiBon extends HttpServlet {
 	  // Set response content type
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
-
+      
+      String path = getServletContext().getRealPath("/");
+      String filename = "Bon.pdf";
+      DataSource source = new FileDataSource(path + filename);
+      
       try{
          // Create a default MimeMessage object.
          MimeMessage message = new MimeMessage(session);
@@ -74,23 +85,35 @@ public class ServletEnvoiBon extends HttpServlet {
          message.addRecipient(Message.RecipientType.TO,
                                   new InternetAddress(to));
          // Set Subject: header field
-         message.setSubject("This is the Subject Line!");
-         // Now set the actual message
-         message.setText("This is actual message");
-         // Send message
-         Transport.send(message);
-         String title = "Send Email";
-         String res = "Sent message successfully....";
-         String docType =
-         "<!doctype html public \"-//w3c//dtd html 4.0 " +
-         "transitional//en\">\n";
-         out.println(docType +
-         "<html>\n" +
-         "<head><title>" + title + "</title></head>\n" +
-         "<body bgcolor=\"#f0f0f0\">\n" +
-         "<h1 align=\"center\">" + title + "</h1>\n" +
-         "<p align=\"center\">" + res + "</p>\n" +
-         "</body></html>");
+         message.setSubject("Gain du bon Arc'People");
+         
+         //partie message
+         BodyPart messageBodyPart = new MimeBodyPart();
+         messageBodyPart.setText("Bravo ! Tu as gagné notre bon Arc'People ! Félicitations !");
+        
+        Multipart multipart = new MimeMultipart();
+        multipart.addBodyPart(messageBodyPart);
+        //partie fichier joint
+        messageBodyPart = new MimeBodyPart();
+        messageBodyPart.setDataHandler(new DataHandler(source));
+        messageBodyPart.setFileName(filename);
+        
+        multipart.addBodyPart(messageBodyPart);
+        message.setContent(multipart);
+        // Send message
+        Transport.send(message);
+        String title = "Send Email";
+        String res = "Sent message successfully....";
+        String docType =
+        "<!doctype html public \"-//w3c//dtd html 4.0 " +
+        "transitional//en\">\n";
+        out.println(docType +
+        "<html>\n" +
+        "<head><title>" + title + "</title></head>\n" +
+        "<body bgcolor=\"#f0f0f0\">\n" +
+        "<h1 align=\"center\">" + title + "</h1>\n" +
+        "<p align=\"center\">" + res + "</p>\n" +
+        "</body></html>");
       }catch (MessagingException mex) {
          mex.printStackTrace();
       }
