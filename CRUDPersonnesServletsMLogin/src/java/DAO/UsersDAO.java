@@ -5,7 +5,6 @@
  */
 package DAO;
 
-import Model.Personne;
 import Model.Users;
 import java.awt.Image;
 import java.sql.Blob;
@@ -33,7 +32,7 @@ public class UsersDAO {
          ArrayList<Users> users = new  ArrayList<Users>();
         try {
              stmt = conn.createStatement();
-            String query = "SELECT Numero,Username,email,pwd,Photo FROM Users ";
+            String query = "SELECT Numero,Username,email,pwd FROM Users ";
             
            
             rs = stmt.executeQuery(query);
@@ -44,7 +43,6 @@ public class UsersDAO {
                 u.setUsername(rs.getString("Username"));
                 u.setEmail(rs.getString("email"));
                 u.setPwd(rs.getString("pwd"));
-                u.setPhoto(rs.getBlob("Photo"));
                 users.add(u);
             }
             return users ;
@@ -110,7 +108,6 @@ public class UsersDAO {
                 u.setUsername(rs.getString("Username"));
                 u.setEmail(rs.getString("email"));
                 u.setPwd(rs.getString("pwd"));
-                u.setPhoto(rs.getBlob("Photo"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -134,15 +131,14 @@ public class UsersDAO {
         Long returnNumero = null;
         try {
 
-            String query = "insert into Users(username,pwd,email,photo) values (?,?,?,?) returning numero into ?";
+            String query = "insert into Users(username,pwd,email) values (?,?,?) returning numero into ?";
             System.out.println("insertquery ->" + query);
 
             pstmt = (OraclePreparedStatement) conn.prepareStatement(query); //create a statement
             pstmt.setString(1, username);
             pstmt.setString(2,pwd);
             pstmt.setString(3,email);
-            pstmt.setBlob(4,photo);
-            pstmt.setLong(5, OracleTypes.NUMBER);
+            pstmt.registerReturnParameter(4, OracleTypes.NUMBER);
 
             int count = pstmt.executeUpdate();
             conn.commit();
@@ -172,7 +168,7 @@ public class UsersDAO {
     
     public Long updateProfil(Long id, String username, String pwd, String email, Blob photo){
         int executeUpdate = 0;
-            String query = null, endquery = null,susername = null, spwd = null, semail = null, sphoto = null;
+            String query = null, endquery = null,susername = null, spwd = null, semail = null;
             Connection conn = DBDataSource.getJDBCConnection();
             Statement stmt = null;
             try {
@@ -195,10 +191,6 @@ public class UsersDAO {
                     
                     semail = " EMAIL='" + email + "'";
                 }
-                if (photo != null) {
-                 
-                    sphoto = " PHOTO='" + photo + "'";
-                }
                 
                  if (susername != null) {
                     query = query.concat(susername);
@@ -219,19 +211,8 @@ public class UsersDAO {
                     }
                     query = query.concat(semail);
                     onedone = true;
-                }
-                 
-                 if (sphoto != null) {
-                    if (onedone) {
-                        query = query.concat(",");
-                    }
-                    query = query.concat(sphoto);
-                    onedone = true;
-                }
-                
-                
-                
-           
+                }              
+              
                 query = query.concat(endquery);
 
                 System.out.println("updatequery ->" + query);
