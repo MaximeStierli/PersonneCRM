@@ -62,6 +62,8 @@ public class ServletEnvoiBon extends HttpServlet {
       PrintWriter out = response.getWriter();
 
       try{
+          // base de donnée
+          
          // Create a default MimeMessage object.
          MimeMessage message = new MimeMessage(session);
          // Set From: header field of the header.

@@ -6,6 +6,8 @@
 package Model;
 
 import java.sql.Blob;
+import java.sql.Date;
+import java.util.Calendar;
 
 /**
  *
@@ -17,6 +19,7 @@ public class Users {
     private String pwd;
     private String email;
     private Blob photo = null;
+    private Date dateReceptionBon ;
 
     public Users() {
     }
@@ -70,7 +73,24 @@ public class Users {
         this.email = email;
     }
     
-    
+       public Date getDateReceptionBon() {
+       return dateReceptionBon;
+    }
+
+  public void setDateReceptionBon(Date ReceptionBon) {
+        this.dateReceptionBon = ReceptionBon;
+   }
+     
+   
+   public boolean isReceiveThisMonth(){
+       //Initialisation du calendrier qui contient la date "dateReceptionBon"
+        Calendar calReceive = Calendar.getInstance();
+        calReceive.setTime(dateReceptionBon);
+        //Initialisation du calendrier qui contient la date actuelle.
+        Calendar calCurrentDate = Calendar.getInstance();
+        //Si les mois sont identiques, on retourne true.
+        return calCurrentDate.get(Calendar.MONTH) == calReceive.get(Calendar.MONTH);
+    } 
     
     
 }
