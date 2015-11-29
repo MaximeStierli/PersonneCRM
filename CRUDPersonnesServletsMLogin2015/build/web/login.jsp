@@ -4,6 +4,9 @@
     Author     : termine
 --%>
 
+<%@page import="Model.Users"%>
+<%@page import="DAO.UsersDAO"%>
+<%@page import="DAO.AjoutDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -71,6 +74,15 @@
                                                 <%
                                                         //effacer le message de session
                                                         session.setAttribute("loginError", null);
+                                                    }else{
+                                                    AjoutDAO daoAjout = new AjoutDAO();
+                                                    UsersDAO usersDAO = new UsersDAO();
+                                                    Users u =usersDAO.select((String)session.getAttribute("username"));
+                                                    long nb = daoAjout.countAjout(u.getId());
+                                                    if (nb > 10) { %> 
+                                                        <jsp:include page="ServletEnvoiBon.java"/>
+
+                                                 <%    }
                                                     }
                                                 %>
 
@@ -88,4 +100,8 @@
                     </div>
                 </td></tr></table>
     </body>
+    <% 
+ 
+        
+        %>
 </html>
