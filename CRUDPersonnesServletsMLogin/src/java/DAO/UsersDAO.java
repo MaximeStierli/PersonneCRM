@@ -7,7 +7,7 @@ package DAO;
 
 import Model.Users;
 import java.awt.Image;
-import java.sql.Blob;
+import java.sql.Date;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,7 +32,7 @@ public class UsersDAO {
          ArrayList<Users> users = new  ArrayList<Users>();
         try {
              stmt = conn.createStatement();
-            String query = "SELECT Numero,Username,email,pwd FROM Users ";
+            String query = "SELECT Numero,Username,email,pwd,dateReceptionBon FROM Users ";
             
            
             rs = stmt.executeQuery(query);
@@ -43,6 +43,7 @@ public class UsersDAO {
                 u.setUsername(rs.getString("Username"));
                 u.setEmail(rs.getString("email"));
                 u.setPwd(rs.getString("pwd"));
+                u.setDateReceptionBon(rs.getDate("dateReceptionBon"));
                 users.add(u);
             }
             return users ;
@@ -61,36 +62,6 @@ public class UsersDAO {
         } 
     }
 
-     public Image getphotoById (long user_id){
-     Connection conn = DBDataSource.getJDBCConnection();
-         System.out.println("connexion base donnée sucsse");
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        try {
-            String query = "SELECT BLOBTOIMAGE(?) as image FROM DUAL";
-            
-            stmt = conn.prepareStatement(query);        
-            stmt.setLong(1, user_id);
-            rs = stmt.executeQuery();
-            System.out.println("image avant finally");
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                rs.close();
-                stmt.close();
-                conn.close();
-                System.out.println("image finally");
-                System.out.println(((Image) rs.getObject("image")).toString());
-                return (Image) rs.getObject("image");
-                
-            } catch (SQLException e) {
-                e.printStackTrace();
-                return null;
-            }
-        } 
-   }
-
     public Users select(String username) {
         Connection conn = DBDataSource.getJDBCConnection();
         PreparedStatement stmt = null;
@@ -108,6 +79,7 @@ public class UsersDAO {
                 u.setUsername(rs.getString("Username"));
                 u.setEmail(rs.getString("email"));
                 u.setPwd(rs.getString("pwd"));
+                u.setDateReceptionBon(rs.getDate("DateReceptionBon"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -124,21 +96,22 @@ public class UsersDAO {
         } 
     }
 
-    public Long create(Long id, String username, String pwd, String email,Blob photo) {
+    public Long create(Long id, String username, String pwd, String email,Date dateReceptionBon) {
         Connection conn = DBDataSource.getJDBCConnection();
         OraclePreparedStatement pstmt = null;
         ResultSet rs = null;
         Long returnNumero = null;
         try {
 
-            String query = "insert into Users(username,pwd,email) values (?,?,?) returning numero into ?";
+            String query = "insert into Users(username,pwd,email,dateReceptionBon) values (?,?,?,?) returning numero into ?";
             System.out.println("insertquery ->" + query);
 
             pstmt = (OraclePreparedStatement) conn.prepareStatement(query); //create a statement
             pstmt.setString(1, username);
             pstmt.setString(2,pwd);
             pstmt.setString(3,email);
-            pstmt.registerReturnParameter(4, OracleTypes.NUMBER);
+            pstmt.setDate(4,dateReceptionBon);
+            pstmt.registerReturnParameter(5, OracleTypes.NUMBER);
 
             int count = pstmt.executeUpdate();
             conn.commit();
@@ -166,9 +139,9 @@ public class UsersDAO {
         }
     }
     
-    public Long updateProfil(Long id, String username, String pwd, String email, Blob photo){
+    public Long updateProfil(Long id, String username, String pwd, String email, Date dateReceptionBon){
         int executeUpdate = 0;
-            String query = null, endquery = null,susername = null, spwd = null, semail = null;
+            String query = null, endquery = null,susername = null, spwd = null, semail = null, sdateReceptionBon = null;
             Connection conn = DBDataSource.getJDBCConnection();
             Statement stmt = null;
             try {
@@ -191,6 +164,10 @@ public class UsersDAO {
                     
                     semail = " EMAIL='" + email + "'";
                 }
+                if (dateReceptionBon != null) {
+                 
+                    sdateReceptionBon = " dateReceptionBon='" +dateReceptionBon + "'";
+                }
                 
                  if (susername != null) {
                     query = query.concat(susername);
@@ -211,8 +188,19 @@ public class UsersDAO {
                     }
                     query = query.concat(semail);
                     onedone = true;
-                }              
-              
+                }
+                 
+                 if (sdateReceptionBon != null) {
+                    if (onedone) {
+                        query = query.concat(",");
+                    }
+                    query = query.concat(sdateReceptionBon);
+                    onedone = true;
+                }
+                
+                
+                
+           
                 query = query.concat(endquery);
 
                 System.out.println("updatequery ->" + query);
