@@ -117,7 +117,6 @@ public class ServletEnvoiBon extends HttpServlet {
             out.println("<title>Servlet ServletEnvoiBon</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ServletEnvoiBon at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {
