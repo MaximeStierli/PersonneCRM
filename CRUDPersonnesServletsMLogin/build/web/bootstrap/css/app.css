@@ -1,0 +1,91 @@
+body {
+    background-image: url("../img/background.png");
+    background-color: white;
+    font-family: 'Open Sans';
+    font-weight: 300;
+    color:white;
+}
+.main {
+    position:fixed;
+    vertical-align: middle;
+    left: 50%;
+    bottom:30%;
+    width: 600px;
+    height:500px;
+    margin-left: -300px;
+    margin-bottom: -125px;
+    margin-top: -125px;
+    background-color: #74AFAD;
+    border-radius: 50%;
+}
+
+.form-form {
+    
+    background-color: yellow;
+    border-radius: 50%;
+}
+
+@media only screen and (max-width : 500px) {
+    .main {
+        background: white;
+        margin-top: 30px;
+        width:500px;
+        height:500px;
+        border-radius:300px;
+        vertical-align: middle;
+
+    }
+}
+h1 {
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 0;
+    text-align: center;
+}
+h2 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    color: white;
+    font-size: 18px;
+    margin-top: 5px;
+    text-align: center;
+}
+form {
+    margin-top: 60px;
+    vertical-align: middle;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+input.form-control , input[type="submit"] , .btn {
+    border-radius: 0px;
+    vertical-align: middle;
+}
+.btn {
+    transition: all ease-in-out 0.2s;
+    vertical-align: middle;
+}
+.credits {
+    margin-top: 100px;
+    color: #999;
+    font-size: 12px;
+}
+.credits a {
+    color: inherit;
+}
+
+.label-fontcolor-red{
+    color:red;
+}
+.input-group-addon {
+    display: inline;
+}
+
+
+
+
+
+
+
+
+
