@@ -73,12 +73,16 @@ public class Users {
     }
     
     public boolean isReceiveThisMonth(){
-        //Initialisation du calendrier qui contient la date "dateReceptionBon"
+        if(this.dateReceptionBon == null){
+            return false;
+        }else{
+            //Initialisation du calendrier qui contient la date "dateReceptionBon"
         Calendar calReceive = Calendar.getInstance();
         calReceive.setTime(dateReceptionBon);
         //Initialisation du calendrier qui contient la date actuelle.
         Calendar calCurrentDate = Calendar.getInstance();
         //Si les mois sont identiques, on retourne true.
         return calCurrentDate.get(Calendar.MONTH) == calReceive.get(Calendar.MONTH);
+        }    
     }    
 }
